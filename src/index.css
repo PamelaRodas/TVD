@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Parisienne&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: #f7efea;
+  background:
+    radial-gradient(circle at top left, rgba(229, 164, 184, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(182, 58, 77, 0.18), transparent 22%),
+    linear-gradient(180deg, #1b0d15 0%, #0d060b 42%, #050305 100%);
+  background-attachment: fixed;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
