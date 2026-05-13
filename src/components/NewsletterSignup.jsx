@@ -13,7 +13,7 @@ export default function NewsletterSignup() {
     if (email.includes('@')) {
       localStorage.setItem('newsletterEmail', email);
       setIsSubscribed(true);
-      setMessage('✦ welcome to the cosmic flow ✦');
+      setMessage('welcome to the archive');
       setEmail('');
       setTimeout(() => setMessage(''), 3000);
     }
@@ -22,19 +22,19 @@ export default function NewsletterSignup() {
   const handleUnsubscribe = () => {
     localStorage.removeItem('newsletterEmail');
     setIsSubscribed(false);
-    setMessage('the void awaits your return');
+    setMessage('you can return whenever you want');
     setTimeout(() => setMessage(''), 3000);
   };
 
   return (
     <div className="newsletter-signup">
       <div className="newsletter-content">
-        <h3>receive cosmic messages</h3>
-        <p>get manifestation tips, lunar insights, and cosmic wisdom straight to your inbox</p>
+        <h3>receive little letters</h3>
+        <p>soft notes, diary updates, lunar moods, and beautiful things worth saving.</p>
 
         {isSubscribed ? (
           <div className="subscribed-message">
-            <p className="subscribed-text">you're receiving cosmic messages now ✨</p>
+            <p className="subscribed-text">you are receiving little letters now</p>
             <button onClick={handleUnsubscribe} className="unsubscribe-btn">
               unsubscribe
             </button>

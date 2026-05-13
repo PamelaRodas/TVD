@@ -1,31 +1,29 @@
 import { useState, useEffect } from 'react';
 
-const moonPhases = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
+const moonPhases = ['new', 'waxing', 'first', 'waxing', 'full', 'waning', 'last', 'waning'];
 
 const metaphysicalMessages = [
   'the moon is listening',
   'your frequency is shifting',
   'magic is here now',
-  'listen to the stars',
-  'time bends for those who wait',
-  'you are cosmic dust',
-  'becoming is your nature',
-  'the void embraces you',
+  'listen to the quiet',
+  'time softens what hurts',
+  'you are becoming',
+  'your heart knows',
+  'begin again gently',
 ];
 
 export default function MoonPhaseWidget() {
-  const [moonPhase, setMoonPhase] = useState(0);
-  const [message, setMessage] = useState(0);
+  const [moonPhase] = useState(() => {
+    const now = new Date();
+    return Math.floor((now.getDate() % 29.53) / 29.53 * 8);
+  });
+  const [message, setMessage] = useState(() => {
+    const now = new Date();
+    return Math.floor((now.getHours() + now.getMinutes()) % metaphysicalMessages.length);
+  });
 
   useEffect(() => {
-    // Calculate current moon phase (simplified)
-    const now = new Date();
-    const phase = Math.floor((now.getDate() % 29.53) / 29.53 * 8);
-    setMoonPhase(phase);
-
-    const msgIndex = Math.floor((now.getHours() + now.getMinutes()) % metaphysicalMessages.length);
-    setMessage(msgIndex);
-
     const interval = setInterval(() => {
       setMessage((prev) => (prev + 1) % metaphysicalMessages.length);
     }, 12000);
@@ -41,7 +39,6 @@ export default function MoonPhaseWidget() {
         {new Date().toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
-          second: '2-digit',
         })}
       </div>
     </div>

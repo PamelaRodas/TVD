@@ -1,51 +1,54 @@
 import { useEffect, useState } from 'react';
 import '../styles/cursor.css';
 
+const interactiveSelector = 'a, button, [role="button"], input, textarea, select, .photo-card';
+
 export default function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
+      setIsVisible(true);
+      setIsHovering(Boolean(e.target.closest(interactiveSelector)));
     };
 
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
+    const handleMouseLeave = () => {
+      setIsVisible(false);
+      setIsHovering(false);
+    };
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    const handleMouseDown = () => setIsHovering(true);
+    const handleMouseUp = (e) => {
+      setIsHovering(Boolean(e.target.closest(interactiveSelector)));
+    };
 
-    // Hover on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, [role="button"], input');
-    interactiveElements.forEach((el) => {
-      el.addEventListener('mouseenter', () => setIsHovering(true));
-      el.addEventListener('mouseleave', () => setIsHovering(false));
-    });
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener('mouseenter', () => {});
-        el.removeEventListener('mouseleave', () => {});
-      });
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
     };
   }, []);
 
   return (
     <>
       <div
-        className={`cursor-dot ${isHovering ? 'hover' : ''}`}
+        className={`cursor-dot ${isHovering ? 'hover' : ''} ${isVisible ? 'visible' : ''}`}
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
         }}
       />
       <div
-        className={`cursor-glow ${isHovering ? 'hover' : ''}`}
+        className={`cursor-ring ${isHovering ? 'hover' : ''} ${isVisible ? 'visible' : ''}`}
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,

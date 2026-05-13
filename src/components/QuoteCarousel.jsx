@@ -6,13 +6,11 @@ const metaphysicalQuotes = [
   "we are made of stardust and midnight thoughts",
   "every moment is a sacred act of becoming",
   "the moon knows your secrets before you do",
-  "beauty is a frequency that only broken hearts can hear",
-  "time is a lover that returns to those who wait",
+  "beauty is a frequency that only honest hearts can hear",
+  "time returns softly to those who wait",
   "in the space between heartbeats, magic lives",
   "we are not lost; we are exactly where the stars placed us",
-  "some nights feel like reincarnations of old love",
-  "the void is not empty; it's full of potential",
-  "your scars are maps to places of rebirth",
+  "some nights feel like old love returning",
 ];
 
 export default function QuoteCarousel() {
@@ -29,15 +27,14 @@ export default function QuoteCarousel() {
   return (
     <div className="quote-carousel">
       <div className="quote-content">
-        <span className="quote-symbol">✦</span>
+        <span className="quote-symbol">quote</span>
         <p className="quote-text">{metaphysicalQuotes[currentQuote]}</p>
-        <span className="quote-symbol">✦</span>
       </div>
       <div className="quote-indicators">
-        {metaphysicalQuotes.map((_, index) => (
+        {metaphysicalQuotes.slice(0, 5).map((_, index) => (
           <button
             key={index}
-            className={`indicator ${index === currentQuote ? 'active' : ''}`}
+            className={`indicator ${index === (currentQuote % 5) ? 'active' : ''}`}
             onClick={() => setCurrentQuote(index)}
             aria-label={`Quote ${index + 1}`}
           />

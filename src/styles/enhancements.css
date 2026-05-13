@@ -11,11 +11,11 @@
 
 .celestial-element {
   position: absolute;
-  opacity: 0.15;
+  opacity: 0.08;
   animation: drift 20s ease-in-out infinite;
   font-size: 2rem;
   color: var(--aura);
-  text-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
+  text-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
 }
 
 .celestial-1 {
@@ -36,7 +36,7 @@
   left: 10%;
   animation-delay: -10s;
   font-size: 1.5rem;
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
 .celestial-4 {
@@ -57,7 +57,7 @@
   border-radius: 50%;
   filter: blur(60px);
   pointer-events: none;
-  opacity: 0.06;
+  opacity: 0.03;
 }
 
 .aura-1 {
@@ -137,19 +137,19 @@
 .quote-carousel {
   position: relative;
   z-index: 1;
-  margin: 2rem auto;
-  padding: 2.4rem 1.8rem;
+  margin: 3.2rem auto;
+  padding: 3rem 2.2rem;
   max-width: 900px;
   border-radius: 1.8rem;
   background: linear-gradient(
     135deg,
-    rgba(182, 58, 77, 0.12),
-    rgba(111, 22, 44, 0.16),
-    rgba(182, 58, 77, 0.08)
+    rgba(182, 58, 77, 0.06),
+    rgba(111, 22, 44, 0.08),
+    rgba(182, 58, 77, 0.04)
   );
-  border: 1px solid rgba(229, 164, 184, 0.2);
+  border: 1px solid rgba(229, 164, 184, 0.15);
   box-shadow:
-    0 8px 32px rgba(182, 58, 77, 0.15),
+    0 8px 32px rgba(182, 58, 77, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -160,7 +160,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.4rem;
   animation: quoteSlideIn 0.6s ease-out;
 }
 
@@ -184,8 +184,8 @@
 .quote-indicators {
   display: flex;
   justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1.4rem;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
 }
 
 .indicator {

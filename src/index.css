@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Parisienne&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&family=Parisienne&display=swap");
 
 * {
   box-sizing: border-box;
@@ -16,11 +16,11 @@ html {
 
 body {
   margin: 0;
-  color: #f7efea;
+  color: #351f18;
   background:
-    radial-gradient(circle at top left, rgba(229, 164, 184, 0.16), transparent 28%),
-    radial-gradient(circle at top right, rgba(182, 58, 77, 0.18), transparent 22%),
-    linear-gradient(180deg, #1b0d15 0%, #0d060b 42%, #050305 100%);
+    radial-gradient(circle at 12% 8%, rgba(125, 15, 28, 0.12), transparent 24rem),
+    radial-gradient(circle at 90% 16%, rgba(137, 101, 65, 0.14), transparent 20rem),
+    linear-gradient(180deg, #f9f4eb 0%, #eadcc6 46%, #c7ad8d 100%);
   background-attachment: fixed;
 }
 
@@ -28,7 +28,7 @@ body,
 button,
 input,
 textarea {
-  font-family: "Inter", "Segoe UI", sans-serif;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
 }
 
 img {

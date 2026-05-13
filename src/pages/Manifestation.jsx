@@ -27,35 +27,36 @@ const manifestationPrompts = [
   "what blocks are you releasing?",
 ];
 
+const phases = [
+  { mark: "new", name: "New Moon" },
+  { mark: "waxing", name: "Waxing Crescent" },
+  { mark: "first", name: "First Quarter" },
+  { mark: "waxing", name: "Waxing Gibbous" },
+  { mark: "full", name: "Full Moon" },
+  { mark: "waning", name: "Waning Gibbous" },
+  { mark: "last", name: "Last Quarter" },
+  { mark: "waning", name: "Waning Crescent" },
+];
+
 export default function Manifestation() {
   const [currentAffirmation, setCurrentAffirmation] = useState(0);
-  const [manifestationDays, setManifestationDays] = useState(0);
-  const [sealedIntention, setSealedIntention] = useState(null);
+  const [manifestationDays, setManifestationDays] = useState(() => {
+    const saved = localStorage.getItem('manifestationStart');
+    if (!saved) return 0;
+    return Math.floor((new Date() - new Date(saved)) / (1000 * 60 * 60 * 24));
+  });
+  const [sealedIntention, setSealedIntention] = useState(() => localStorage.getItem('sealedIntention'));
   const [intention, setIntention] = useState('');
-  const [lunarPhase, setLunarPhase] = useState('');
-
-  useEffect(() => {
-    // Calculate lunar phase
+  const [lunarPhase] = useState(() => {
     const now = new Date();
     const phase = Math.floor((now.getDate() % 29.53) / 29.53 * 8);
-    const phases = ['🌑 New Moon', '🌒 Waxing Crescent', '🌓 First Quarter', '🌔 Waxing Gibbous', 
-                    '🌕 Full Moon', '🌖 Waning Gibbous', '🌗 Last Quarter', '🌘 Waning Crescent'];
-    setLunarPhase(phases[phase]);
+    return phases[phase];
+  });
+  const [activePrompt] = useState(() => (
+    manifestationPrompts[Math.floor(Math.random() * manifestationPrompts.length)]
+  ));
 
-    // Load saved manifestation date
-    const saved = localStorage.getItem('manifestationStart');
-    if (saved) {
-      const days = Math.floor((now - new Date(saved)) / (1000 * 60 * 60 * 24));
-      setManifestationDays(days);
-    }
-
-    // Load sealed intention
-    const sealed = localStorage.getItem('sealedIntention');
-    if (sealed) {
-      setSealedIntention(sealed);
-    }
-
-    // Rotate affirmation every 6 seconds
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentAffirmation(prev => (prev + 1) % affirmations.length);
     }, 6000);
@@ -88,19 +89,18 @@ export default function Manifestation() {
           <h2>calling your reality into existence</h2>
         </div>
 
-        {/* Lunar Phase Info */}
         <div className="lunar-info-card">
-          <div className="lunar-phase-large">{lunarPhase.split(' ')[0]}</div>
-          <div className="lunar-phase-name">{lunarPhase.split(' ')[1]}</div>
+          <div className="lunar-phase-large">{lunarPhase.mark}</div>
+          <div className="lunar-phase-name">{lunarPhase.name}</div>
           <p className="lunar-description">
-            {lunarPhase.includes('New') && "Perfect for new beginnings and planting seeds of intention"}
-            {lunarPhase.includes('Waxing') && "Time to build and grow your manifestations"}
-            {lunarPhase.includes('Full') && "Amplified manifestation power - your intentions peak"}
-            {lunarPhase.includes('Waning') && "Release what no longer serves you"}
+            {lunarPhase.name.includes('New') && "Perfect for new beginnings and planting seeds of intention."}
+            {lunarPhase.name.includes('Waxing') && "Time to build and grow your manifestations."}
+            {lunarPhase.name.includes('Full') && "Amplified manifestation power: your intentions peak."}
+            {lunarPhase.name.includes('Waning') && "Release what no longer serves you."}
+            {lunarPhase.name.includes('Quarter') && "Pause, check your direction, and choose with clarity."}
           </p>
         </div>
 
-        {/* Daily Affirmation */}
         <div className="affirmation-carousel">
           <p className="affirmation-label">today's frequency</p>
           <div className="affirmation-text">"{affirmations[currentAffirmation]}"</div>
@@ -110,18 +110,18 @@ export default function Manifestation() {
                 key={i}
                 className={`dot ${i === currentAffirmation ? 'active' : ''}`}
                 onClick={() => setCurrentAffirmation(i)}
+                aria-label={`Affirmation ${i + 1}`}
               />
             ))}
           </div>
         </div>
 
-        {/* Intention Sealing */}
         <div className="intention-container">
           <h3>seal your intention</h3>
-          
+
           {!sealedIntention ? (
             <div className="intention-form">
-              <p className="prompt-label">{manifestationPrompts[Math.floor(Math.random() * manifestationPrompts.length)]}</p>
+              <p className="prompt-label">{activePrompt}</p>
               <textarea
                 value={intention}
                 onChange={(e) => setIntention(e.target.value)}
@@ -129,12 +129,12 @@ export default function Manifestation() {
                 className="intention-input"
               />
               <button className="seal-button" onClick={sealIntention}>
-                ✦ seal this intention ✦
+                seal this intention
               </button>
             </div>
           ) : (
             <div className="sealed-intention-card">
-              <div className="sealed-label">✦ intention sealed ✦</div>
+              <div className="sealed-label">intention sealed</div>
               <p className="sealed-text">"{sealedIntention}"</p>
               <div className="manifestation-counter">
                 <span className="counter-label">days manifesting</span>
@@ -147,7 +147,6 @@ export default function Manifestation() {
           )}
         </div>
 
-        {/* Manifestation Steps */}
         <div className="manifestation-steps">
           <h3>the path to manifestation</h3>
           <div className="steps-grid">
@@ -174,27 +173,26 @@ export default function Manifestation() {
           </div>
         </div>
 
-        {/* Frequency Rituals */}
         <div className="rituals-section">
           <h3>align your frequency</h3>
           <div className="rituals-grid">
             <div className="ritual-card">
-              <span className="ritual-icon">🕯️</span>
+              <span className="ritual-icon">01</span>
               <h4>moonlight meditation</h4>
               <p>sit under the moonlight. visualize your manifestation. feel it as real.</p>
             </div>
             <div className="ritual-card">
-              <span className="ritual-icon">✍️</span>
+              <span className="ritual-icon">02</span>
               <h4>manifestation writing</h4>
               <p>write your desires in present tense. "i am" not "i will be". make it real now.</p>
             </div>
             <div className="ritual-card">
-              <span className="ritual-icon">🔮</span>
+              <span className="ritual-icon">03</span>
               <h4>visualization ritual</h4>
               <p>close your eyes. see your life. feel the emotions. taste the success.</p>
             </div>
             <div className="ritual-card">
-              <span className="ritual-icon">💫</span>
+              <span className="ritual-icon">04</span>
               <h4>gratitude ceremony</h4>
               <p>thank the universe as if it's already done. gratitude is the highest frequency.</p>
             </div>

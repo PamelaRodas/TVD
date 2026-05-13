@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const secretMessages = [
   "you are the universe experiencing itself",
-  "the void is not empty, it's full of possibility",
+  "the quiet is full of possibility",
   "your frequency is your power",
   "magic is real when you believe it is",
   "every thought is a spell",
@@ -17,6 +17,9 @@ export default function SacredSpace() {
   const [isUnlocked, setIsUnlocked] = useState(localStorage.getItem('sacredSpaceUnlocked') === 'true');
   const [password, setPassword] = useState('');
   const [reflection, setReflection] = useState('');
+  const [dailySecret] = useState(() => (
+    secretMessages[Math.floor(Math.random() * secretMessages.length)]
+  ));
   const [reflections, setReflections] = useState(() => {
     const saved = localStorage.getItem('sacredReflections');
     return saved ? JSON.parse(saved) : [];
@@ -57,10 +60,10 @@ export default function SacredSpace() {
     return (
       <section className="sacred-space-section section">
         <div className="sacred-lock">
-          <div className="lock-icon">🔮</div>
+          <div className="lock-icon">private</div>
           <h2>sacred space</h2>
           <p>this is a private sanctuary. only your deepest truths belong here.</p>
-          
+
           <form onSubmit={handleUnlock} className="lock-form">
             <input
               type="password"
@@ -71,7 +74,7 @@ export default function SacredSpace() {
             />
             <button type="submit" className="unlock-button">unlock</button>
           </form>
-          
+
           <p className="lock-hint">hint: what lights up the night?</p>
         </div>
       </section>
@@ -86,7 +89,7 @@ export default function SacredSpace() {
       </div>
 
       <div className="secret-message">
-        <p className="daily-secret">"{secretMessages[Math.floor(Math.random() * secretMessages.length)]}"</p>
+        <p className="daily-secret">"{dailySecret}"</p>
       </div>
 
       <div className="reflection-container">
@@ -98,7 +101,7 @@ export default function SacredSpace() {
           className="reflection-input"
         />
         <button onClick={addReflection} className="save-reflection">
-          ✦ save to the void ✦
+          save reflection
         </button>
       </div>
 
@@ -110,7 +113,7 @@ export default function SacredSpace() {
               <div key={ref.id} className="reflection-card">
                 <p className="reflection-text">"{ref.text}"</p>
                 <p className="reflection-date">{ref.date}</p>
-                <p className="reflection-message">— {ref.message}</p>
+                <p className="reflection-message">- {ref.message}</p>
               </div>
             ))}
           </div>

@@ -14,7 +14,7 @@ export default function About() {
     <section id="about-me" className="section about-section">
       <div className="section-heading">
         <p className="eyebrow">About Me</p>
-        <h2>soñadora, elegante, sensible, delicada y poderosa</h2>
+        <h2>so&ntilde;adora, elegante, sensible, delicada y poderosa</h2>
       </div>
 
       <div className="about-grid">
@@ -22,9 +22,9 @@ export default function About() {
           <span className="diary-label">hello, this is my world</span>
           <h3>romantic, mysterious, and a little metaphysical</h3>
           <p>
-            I live in romance novels and dark fantasies. I believe in the power of intention, 
-            in collecting meaningful moments, and in the magic that lives between reality and 
-            what we dream into existence. I notice the small things—the way light falls through lace, 
+            I live in romance novels and dark fantasies. I believe in the power of intention,
+            in collecting meaningful moments, and in the magic that lives between reality and
+            what we dream into existence. I notice the small things: the way light falls through lace,
             how your eyes change when you speak about something you love.
           </p>
           <div className="profile-stats">
@@ -44,16 +44,16 @@ export default function About() {
         </article>
 
         <article className="about-card quote-card">
-          <p className="quote-mark">“</p>
+          <p className="quote-mark">"</p>
           <p>
-            This space is my sanctuary. A collection of soft pink thoughts, dark mysteries, 
-            and the kind of beauty that only exists in stories and stolen moments. 
+            This space is my sanctuary. A collection of soft thoughts, dark mysteries,
+            and the kind of beauty that only exists in stories and stolen moments.
             A place for everything I believe in.
           </p>
           <div className="closing-signature">
             <p>luv.prc</p>
             <p className="xoxo">xoxo</p>
-            <p className="faith">yo con Dios quien contra mi</p>
+            <p className="faith">yo con Dios, quien contra mi</p>
           </div>
         </article>
       </div>

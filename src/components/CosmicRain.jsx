@@ -12,7 +12,7 @@ export default function CosmicRain() {
       rain.style.left = Math.random() * 100 + '%';
       rain.style.top = '-10px';
       
-      const symbols = ['✦', '◆', '★', '○', '✧', '⋆', '∞', '✨'];
+      const symbols = ['✦', '○', '⋆'];
       const symbol = symbols[Math.floor(Math.random() * symbols.length)];
       rain.textContent = symbol;
       
@@ -24,7 +24,7 @@ export default function CosmicRain() {
       }, 4000);
     };
 
-    const interval = setInterval(createRain, 300);
+    const interval = setInterval(createRain, 1200);
     return () => clearInterval(interval);
   }, []);
 

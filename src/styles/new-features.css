@@ -34,7 +34,6 @@
   }
 }
 
-/* Manifestation Page */
 .manifestation-section {
   position: relative;
 }
@@ -856,7 +855,6 @@
   }
 }
 
-/* Minimalist theme tweaks - reduce saturation, shadows, and motion */
 .section,
 .lunar-info-card,
 .affirmation-carousel,
@@ -877,7 +875,7 @@
   opacity: 0.95;
 }
 
-/* tone down animated elements */
+
 .cosmic-particle,
 .ambient-one,
 .brand-symbol,
@@ -886,7 +884,6 @@
   opacity: 0.6 !important;
 }
 
-/* reduce color intensity for gradients */
 .lunar-info-card,
 .affirmation-carousel,
 .newsletter-signup,
@@ -895,7 +892,6 @@
   border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* smaller radii for cleaner look */
 .section,
 .lunar-info-card,
 .ritual-card,
@@ -904,7 +900,6 @@
   border-radius: 0.9rem !important;
 }
 
-/* reduce heavy text-shadows/glows */
 .affirmation-text,
 .sealed-text,
 .hero-copy h1 {
@@ -912,7 +907,6 @@
 }
 
 
-/* Favorite button on photos */
 .favorite-btn {
   width: 40px;
   height: 40px;

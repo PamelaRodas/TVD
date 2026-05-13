@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ImageLightbox({ isOpen, image, onClose, nextImage, prevImage }) {
   useEffect(() => {
@@ -24,22 +24,22 @@ export default function ImageLightbox({ isOpen, image, onClose, nextImage, prevI
   return (
     <div className="lightbox-overlay" onClick={onClose}>
       <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-        <button className="lightbox-close" onClick={onClose}>✕</button>
-        
+        <button className="lightbox-close" onClick={onClose}>x</button>
+
         <button className="lightbox-nav lightbox-prev" onClick={prevImage}>
-          ‹
+          previous
         </button>
-        
+
         <div className="lightbox-image-container">
           <img src={image} alt="Enlarged view" className="lightbox-image" />
         </div>
-        
+
         <button className="lightbox-nav lightbox-next" onClick={nextImage}>
-          ›
+          next
         </button>
 
         <div className="lightbox-info">
-          <p>Press ← → to navigate • Press ESC to close</p>
+          <p>Use arrow keys to navigate. Press ESC to close.</p>
         </div>
       </div>
     </div>

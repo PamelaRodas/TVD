@@ -1,42 +1,18 @@
 import { useState } from 'react';
+import EmptyState from '../components/EmptyState';
 import ImageLightbox from '../components/ImageLightbox';
+import PageHeader from '../components/PageHeader';
 import { useFavorites } from '../hooks/useFavorites';
-
-const moments = [
-  { 
-    image: "https://i.pinimg.com/736x/60/db/05/60db05143f5c93b143ccab2018529bea.jpg", 
-    caption: "Do not torture yourself with memories of the past." 
-  },
-  { 
-    image: "https://i.pinimg.com/736x/fd/69/51/fd695156e0e5fdfaf267c91e44e57708.jpg", 
-    caption: "I have to believe that there's good in people." 
-  },
-  { 
-    image: "https://i.pinimg.com/736x/a7/f7/0a/a7f70a4ec7c3c1c38878567f650daf2c.jpg", 
-    caption: "The choices we make define who we are." 
-  },
-  { 
-    image: "https://i.pinimg.com/736x/b9/c9/19/b9c9195fa7665868b8fc1929060a7a6d.jpg", 
-    caption: "Always and forever." 
-  },
-  { 
-    image: "https://i.pinimg.com/736x/76/3f/67/763f678bd2053acda41c720e0d2605a7.jpg", 
-    caption: "I am who I am." 
-  },
-  { 
-    image: "https://i.pinimg.com/736x/57/da/e3/57dae3744e73a4669f711fbcda44865f.jpg", 
-    caption: "Even miracles take a little time." 
-  },
-  { 
-    image: "https://i.pinimg.com/736x/6f/a7/a3/6fa7a3b9858f8a9a8dcd6a78b2c3ae06.jpg", 
-    caption: "I'll love you forever." 
-  }
-];
+import { getPhotoMoments } from '../services/contentService';
 
 export default function PhotoDump() {
+  const [moments] = useState(() => getPhotoMoments());
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const { isFavorite, toggleFavorite } = useFavorites();
+
+  const featuredMoment = moments[0];
+  const galleryMoments = moments.slice(1);
 
   const openLightbox = (index) => {
     setSelectedImage(index);
@@ -55,6 +31,11 @@ export default function PhotoDump() {
     setSelectedImage((prev) => (prev - 1 + moments.length) % moments.length);
   };
 
+  const togglePhotoFavorite = (event, id) => {
+    event.stopPropagation();
+    toggleFavorite('photos', id);
+  };
+
   return (
     <>
       <ImageLightbox
@@ -65,37 +46,84 @@ export default function PhotoDump() {
         prevImage={prevImage}
       />
       <section id="photo-dump" className="section photo-dump-section">
-        <div className="section-heading">
-          <p className="eyebrow">Photo Dump</p>
-          <h2>pinterest-style memories, tiny fragments, and cinematic snapshots</h2>
-        </div>
+        <PageHeader
+          eyebrow="Photo Album"
+          title="portraits, quiet details, and moments worth remembering"
+        >
+          A small visual archive of scenes that feel personal, refined, and close to the heart.
+        </PageHeader>
 
-        <div className="photo-grid">
-          {moments.map((moment, index) => (
-            <figure 
-              key={moment.caption} 
-              className={`polaroid photo-card ${moment.size ?? ""}`.trim()}
-              onClick={() => openLightbox(index)}
-              style={{ cursor: 'none' }}
-            >
-              <img src={moment.image} alt={moment.caption} />
-              <figcaption>{moment.caption}</figcaption>
-              <div className="photo-overlay">
-                <span className="expand-icon">↗</span>
-                <button
-                  className={`favorite-btn ${isFavorite('photos', index) ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleFavorite('photos', index);
-                  }}
-                  title="Add to favorites"
-                >
-                  ♡
-                </button>
+        {moments.length === 0 ? (
+          <EmptyState title="no photos yet">
+            Add your first image from Studio and it will appear here.
+          </EmptyState>
+        ) : (
+          <>
+            <div className="photo-feature">
+              <button
+                className="photo-feature-image"
+                type="button"
+                onClick={() => openLightbox(0)}
+              >
+                <img src={featuredMoment.image} alt={featuredMoment.caption} />
+              </button>
+
+              <div className="photo-feature-copy">
+                <span className="diary-label">featured portrait</span>
+                <h3>{featuredMoment.caption}</h3>
+                <p>
+                  A leading image for the album, chosen for its color, softness, and quiet presence.
+                </p>
+                <div className="photo-feature-actions">
+                  <button className="primary-button" type="button" onClick={() => openLightbox(0)}>
+                    view portrait
+                  </button>
+                  <button
+                    className="secondary-button"
+                    type="button"
+                    onClick={(event) => togglePhotoFavorite(event, featuredMoment.id)}
+                  >
+                    {isFavorite('photos', featuredMoment.id) ? 'saved' : 'save'}
+                  </button>
+                </div>
               </div>
-            </figure>
-          ))}
-        </div>
+            </div>
+
+            <div className="photo-strip" aria-hidden="true">
+              <span>portraits</span>
+              <span>soft light</span>
+              <span>red details</span>
+              <span>kept moments</span>
+            </div>
+
+            <div className="photo-grid">
+              {galleryMoments.map((moment, index) => {
+                const originalIndex = index + 1;
+
+                return (
+                  <figure
+                    key={moment.id}
+                    className={`polaroid photo-card ${moment.size ?? ""}`.trim()}
+                    onClick={() => openLightbox(originalIndex)}
+                  >
+                    <img src={moment.image} alt={moment.caption} />
+                    <figcaption>{moment.caption}</figcaption>
+                    <div className="photo-overlay">
+                      <span className="expand-icon">view</span>
+                      <button
+                        className={`favorite-btn ${isFavorite('photos', moment.id) ? 'active' : ''}`}
+                        onClick={(event) => togglePhotoFavorite(event, moment.id)}
+                        title="Add to favorites"
+                      >
+                        heart
+                      </button>
+                    </div>
+                  </figure>
+                );
+              })}
+            </div>
+          </>
+        )}
       </section>
     </>
   );
