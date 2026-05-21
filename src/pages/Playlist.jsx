@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import purposePhaseWidget from '../components/purposePhaseWidget';
 
 export default function Playlist() {
   const [selectedPlaylist, setSelectedPlaylist] = useState(0);
@@ -63,7 +62,7 @@ export default function Playlist() {
 
   return (
     <>
-      <purposePhaseWidget />
+      
       <section id="playlists" className="section playlist-section">
         <div className="section-heading">
           <p className="eyebrow">Playlists</p>

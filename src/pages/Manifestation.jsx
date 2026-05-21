@@ -45,10 +45,10 @@ export default function Manifestation() {
     return saved ? JSON.parse(saved) : [false, false, false, false, false, false, false];
   });
 
-  const [bestStreak, setBestStreak] = useState(() => {
+  const storedBest = (() => {
     const saved = localStorage.getItem('growthBestStreak');
     return saved ? Number(saved) : 0;
-  });
+  })();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -94,12 +94,15 @@ export default function Manifestation() {
     return streak;
   })();
 
+  const bestStreak = Math.max(storedBest, currentStreak);
+
   useEffect(() => {
-    if (currentStreak > bestStreak) {
-      setBestStreak(currentStreak);
+    if (currentStreak > storedBest) {
       localStorage.setItem('growthBestStreak', String(currentStreak));
     }
-  }, [currentStreak, bestStreak]);
+    // storedBest is read-once from localStorage; updating localStorage here avoids
+    // calling setState inside effects and keeps the displayed `bestStreak` correct.
+  }, [currentStreak, storedBest]);
 
   return (
     <section className="manifestation-section section">

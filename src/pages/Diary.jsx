@@ -25,7 +25,7 @@ function getDayCount(entries) {
 }
 
 export default function Diary() {
-  const [diaryEntries, setDiaryEntries] = useState(() => getDiaryEntries());
+  const diaryEntries = useMemo(() => getDiaryEntries(), []);
   const [openEntry, setOpenEntry] = useState(null);
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem('diaryFavorites');
