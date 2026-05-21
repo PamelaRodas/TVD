@@ -11,12 +11,14 @@ import {
 } from '../services/contentService';
 
 const emptyDiaryForm = {
+  author: '',
   title: '',
   label: 'journal entry',
   text: '',
 };
 
 const emptyPhotoForm = {
+  author: '',
   image: '',
   caption: '',
 };
@@ -42,28 +44,30 @@ export default function Studio() {
 
   const handleDiarySubmit = (event) => {
     event.preventDefault();
+    const author = diaryForm.author.trim() || 'anonymous soul';
     const title = diaryForm.title.trim();
     const text = diaryForm.text.trim();
     const label = diaryForm.label.trim() || 'journal entry';
 
     if (!title || !text) return;
 
-    const updated = addDiaryEntry({ title, text, label });
+    const updated = addDiaryEntry({ author, title, text, label });
     setDiaryEntries(updated);
-    setDiaryForm(emptyDiaryForm);
+    setDiaryForm({ ...emptyDiaryForm, author });
     refreshSummary();
   };
 
   const handlePhotoSubmit = (event) => {
     event.preventDefault();
+    const author = photoForm.author.trim() || 'anonymous soul';
     const image = photoForm.image.trim();
     const caption = photoForm.caption.trim();
 
     if (!image || !caption) return;
 
-    const updated = addPhotoMoment({ image, caption });
+    const updated = addPhotoMoment({ author, image, caption });
     setPhotoMoments(updated);
-    setPhotoForm(emptyPhotoForm);
+    setPhotoForm({ ...emptyPhotoForm, author });
     refreshSummary();
   };
 
@@ -81,11 +85,8 @@ export default function Studio() {
 
   return (
     <section className="section studio-section">
-      <PageHeader
-        eyebrow="Studio"
-        title="content manager for the archive"
-      >
-        This is the front-end version of the future admin panel. Today it saves locally; later each action can call Spring Boot endpoints.
+      <PageHeader eyebrow="Studio" title="cosmic studio">
+        Create your growth entries and energy moments. Save them locally and build your meaningful practice.
       </PageHeader>
 
       <div className="studio-stats">
@@ -108,10 +109,19 @@ export default function Studio() {
           <div className="studio-panel-header">
             <span className="feature-icon">01</span>
             <div>
-              <h3>new diary entry</h3>
-              <p>Later this maps to POST /api/diary.</p>
+              <h3>new growth entry</h3>
+              <p>Document your healthy practices, intentions, and personal growth here.</p>
             </div>
           </div>
+
+          <label>
+            <span>your name</span>
+            <input
+              value={diaryForm.author}
+              onChange={(event) => updateDiaryField('author', event.target.value)}
+              placeholder="your cosmic name"
+            />
+          </label>
 
           <label>
             <span>title</span>
@@ -150,10 +160,19 @@ export default function Studio() {
           <div className="studio-panel-header">
             <span className="feature-icon">02</span>
             <div>
-              <h3>new photo moment</h3>
-              <p>Later this maps to POST /api/photos.</p>
+              <h3>new energy moment</h3>
+              <p>Capture images that represent your growth practice.</p>
             </div>
           </div>
+
+          <label>
+            <span>your name</span>
+            <input
+              value={photoForm.author}
+              onChange={(event) => updatePhotoField('author', event.target.value)}
+              placeholder="your cosmic name"
+            />
+          </label>
 
           <label>
             <span>image url</span>
@@ -187,6 +206,7 @@ export default function Studio() {
             <div key={entry.id} className="studio-preview-item">
               <span>{entry.label}</span>
               <strong>{entry.title}</strong>
+              <p className="entry-author">by {entry.author || 'anonymous soul'}</p>
             </div>
           ))}
         </article>
@@ -197,6 +217,7 @@ export default function Studio() {
             <div key={moment.id} className="studio-preview-item">
               <span>image</span>
               <strong>{moment.caption}</strong>
+              <p className="entry-author">by {moment.author || 'anonymous soul'}</p>
             </div>
           ))}
         </article>
@@ -204,3 +225,4 @@ export default function Studio() {
     </section>
   );
 }
+

@@ -38,22 +38,16 @@ export default function CustomCursor() {
     };
   }, []);
 
+  const sharedStyle = {
+    left: `${position.x}px`,
+    top: `${position.y}px`,
+  };
+
   return (
     <>
-      <div
-        className={`cursor-dot ${isHovering ? 'hover' : ''} ${isVisible ? 'visible' : ''}`}
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-        }}
-      />
-      <div
-        className={`cursor-ring ${isHovering ? 'hover' : ''} ${isVisible ? 'visible' : ''}`}
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-        }}
-      />
+      <div className={`cursor-aura ${isHovering ? 'hover' : ''} ${isVisible ? 'visible' : ''}`} style={sharedStyle} />
+      <div className={`cursor-ring ${isHovering ? 'hover' : ''} ${isVisible ? 'visible' : ''}`} style={sharedStyle} />
+      <div className={`cursor-dot ${isHovering ? 'hover' : ''} ${isVisible ? 'visible' : ''}`} style={sharedStyle} />
     </>
   );
 }

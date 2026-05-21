@@ -48,14 +48,14 @@ export default function PhotoDump() {
       <section id="photo-dump" className="section photo-dump-section">
         <PageHeader
           eyebrow="Photo Album"
-          title="portraits, quiet details, and moments worth remembering"
+          title="meaningful energy moments"
         >
-          A small visual archive of scenes that feel personal, refined, and close to the heart.
+          Visual representations of healthy practices, intentions, and the energy that surrounds our growth practice.
         </PageHeader>
 
         {moments.length === 0 ? (
-          <EmptyState title="no photos yet">
-            Add your first image from Studio and it will appear here.
+          <EmptyState title="no moments yet">
+            Add your first energy moment from Studio and it will appear here.
           </EmptyState>
         ) : (
           <>
@@ -69,14 +69,15 @@ export default function PhotoDump() {
               </button>
 
               <div className="photo-feature-copy">
-                <span className="diary-label">featured portrait</span>
+                <span className="diary-label">featured moment</span>
                 <h3>{featuredMoment.caption}</h3>
+                <p className="entry-author">by {featuredMoment.author || 'anonymous soul'}</p>
                 <p>
-                  A leading image for the album, chosen for its color, softness, and quiet presence.
+                  A meaningful image chosen for its energy, intention, and power to anchor your growth practice.
                 </p>
                 <div className="photo-feature-actions">
                   <button className="primary-button" type="button" onClick={() => openLightbox(0)}>
-                    view portrait
+                    view moment
                   </button>
                   <button
                     className="secondary-button"
@@ -90,24 +91,26 @@ export default function PhotoDump() {
             </div>
 
             <div className="photo-strip" aria-hidden="true">
-              <span>portraits</span>
-              <span>soft light</span>
-              <span>red details</span>
-              <span>kept moments</span>
+              <span>healthy practices</span>
+              <span>focus</span>
+              <span>personal growth</span>
+              <span>meaningful moments</span>
             </div>
 
             <div className="photo-grid">
               {galleryMoments.map((moment, index) => {
                 const originalIndex = index + 1;
+                const sizeClass = index % 5 === 0 ? 'tall' : index % 3 === 0 ? 'wide' : '';
 
                 return (
                   <figure
                     key={moment.id}
-                    className={`polaroid photo-card ${moment.size ?? ""}`.trim()}
+                    className={`polaroid photo-card ${sizeClass}`.trim()}
                     onClick={() => openLightbox(originalIndex)}
                   >
                     <img src={moment.image} alt={moment.caption} />
                     <figcaption>{moment.caption}</figcaption>
+                    <p className="entry-author">by {moment.author || 'anonymous soul'}</p>
                     <div className="photo-overlay">
                       <span className="expand-icon">view</span>
                       <button

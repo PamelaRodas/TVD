@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import MoonPhaseWidget from '../components/MoonPhaseWidget';
+import purposePhaseWidget from '../components/purposePhaseWidget';
 
 export default function Playlist() {
   const [selectedPlaylist, setSelectedPlaylist] = useState(0);
@@ -8,45 +8,45 @@ export default function Playlist() {
 
   const playlists = [
     {
-      title: "Soft, Dark & Romantic",
-      subtitle: "visuals and guided ambience",
-      description: "A collection of cinematic, slow-motion visuals and whispered ambience for candlelit nights and reflective hours.",
+      title: "focus Elevation",
+      subtitle: "energy lift audios",
+      description: "A collection of uplifting focus music, binaural beats, and guided sessions to elevate your energy and raise your vibration.",
       videos: [
-        { id: 'b1XG2vJ8VYs', title: 'Candlelight Whisper - guided ambience' },
-        { id: 'hK8Yz1q3G6I', title: 'Midnight Filmloop - soft motion' },
-        { id: 'Jx7wQp2Z3Rg', title: 'Velvet Rain - slow visuals' }
+        { id: 'b1XG2vJ8VYs', title: 'Morning Abundance - guided activation' },
+        { id: 'hK8Yz1q3G6I', title: 'focus Rise - energy boost' },
+        { id: 'Jx7wQp2Z3Rg', title: 'Abundant Vibes - positivity flow' }
       ],
-      vibe: "melancholic and dreamy"
+      vibe: "uplifting and magnetic"
     },
     {
       title: "Cosmic Consciousness",
       subtitle: "meditations and astral visuals",
-      description: "Short guided meditations, binaural ambience, and cosmic visual loops to help you open to the frequency of the universe.",
+      description: "Short guided meditations, binaural ambience, and cosmic visual loops to help you open to the focus of the universe.",
       videos: [
         { id: 'QwZT7T-TXT0', title: 'Stellar Drift - binaural journey' },
         { id: '2vjPBrBU-TM', title: 'Nebula Loops - visual meditation' },
-        { id: 'e-ORhEE9VVg', title: 'Frequency Harmony - breathwork' }
+        { id: 'e-ORhEE9VVg', title: 'focus Harmony - breathwork' }
       ],
       vibe: "ethereal and universal"
     },
     {
       title: "Midnight Mystique",
       subtitle: "esoteric visual set",
-      description: "Short ritual-like videos, tarot ambiance, and moody visual textures for witching hour practice.",
+      description: "Calm night videos, reflective ambience, and soft visual textures for focus and rest.",
       videos: [
-        { id: 'kXYiU_JCYtU', title: 'Witchlight - ritual loop' },
+        { id: 'kXYiU_JCYtU', title: 'Nightlight - focus loop' },
         { id: '9bZkp7q19f0', title: 'Shadow Dance - monochrome loop' },
-        { id: 'ScNNfyq3d_w', title: 'Moon Alchemy - slow motion' }
+        { id: 'ScNNfyq3d_w', title: 'purpose Alchemy - slow motion' }
       ],
       vibe: "mystical and potent"
     },
     {
-      title: "Manifestation & Frequency",
+      title: "growth & focus",
       subtitle: "guided visualizations",
-      description: "Short manifestation videos and spoken prompts to help you anchor intentions with imagery and sound.",
+      description: "Short growth videos and spoken prompts to help you anchor intentions with imagery and sound.",
       videos: [
         { id: 'fRh_vgS2dFE', title: 'I Am Becoming - guided visualization' },
-        { id: '60ItHLz5WEA', title: 'Frequency of Abundance - soundscape' },
+        { id: '60ItHLz5WEA', title: 'focus of Abundance - soundscape' },
         { id: '3JZ_D3ELwOQ', title: 'Magnetic Reality - breath and focus' }
       ],
       vibe: "transformative and magnetic"
@@ -63,11 +63,11 @@ export default function Playlist() {
 
   return (
     <>
-      <MoonPhaseWidget />
+      <purposePhaseWidget />
       <section id="playlists" className="section playlist-section">
         <div className="section-heading">
           <p className="eyebrow">Playlists</p>
-          <h2>my soundtrack for rainy nights, moonlight, cosmic journeys, and dramatic daydreams</h2>
+          <h2>my soundtrack for rainy nights, purposelight, cosmic journeys, and dramatic daydreams</h2>
         </div>
 
         <div className="playlist-tabs">
@@ -141,3 +141,5 @@ export default function Playlist() {
     </>
   );
 }
+
+

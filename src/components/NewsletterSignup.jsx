@@ -13,7 +13,7 @@ export default function NewsletterSignup() {
     if (email.includes('@')) {
       localStorage.setItem('newsletterEmail', email);
       setIsSubscribed(true);
-      setMessage('welcome to the archive');
+      setMessage('welcome to your frequency rising practice');
       setEmail('');
       setTimeout(() => setMessage(''), 3000);
     }
@@ -29,12 +29,12 @@ export default function NewsletterSignup() {
   return (
     <div className="newsletter-signup">
       <div className="newsletter-content">
-        <h3>receive little letters</h3>
-        <p>soft notes, diary updates, lunar moods, and beautiful things worth saving.</p>
+        <h3>join the manifestation circle</h3>
+        <p>weekly rituals, moon phase updates, energy tips, and manifestation prompts to amplify your frequency.</p>
 
         {isSubscribed ? (
           <div className="subscribed-message">
-            <p className="subscribed-text">you are receiving little letters now</p>
+            <p className="subscribed-text">you are aligned with our community now</p>
             <button onClick={handleUnsubscribe} className="unsubscribe-btn">
               unsubscribe
             </button>

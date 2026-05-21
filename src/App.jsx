@@ -14,6 +14,7 @@ import EasterEggs from './components/EasterEggs';
 import MetaphysicalDecor from './components/MetaphysicalDecor';
 
 import './App.css'
+import './theme.css'
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,7 +35,7 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/diary" element={<Diary />} />
         <Route path="/photo-dump" element={<PhotoDump />} />
-        <Route path="/manifestation" element={<Manifestation />} />
+        <Route path="/growth" element={<Manifestation />} />
         <Route path="/sacred-space" element={<SacredSpace />} />
         <Route path="/studio" element={<Studio />} />
       </Routes>
@@ -56,3 +57,5 @@ function App() {
 }
 
 export default App
+
+

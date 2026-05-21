@@ -1,44 +1,44 @@
 export const defaultDiaryEntries = [
   {
-    id: "presence",
-    title: "the art of being present",
-    text: "I'm learning that power isn't loud. It's in how softly you can hold someone's hand and change their entire world with it.",
-    label: "journal entry"
+    id: "intention-setting",
+    title: "the power of daily intention",
+    text: "Every morning, before the world wakes, I set three intentions. Not wishes—but declarations of what I will embody today. This practice shifts my entire frequency.",
+    label: "manifestation ritual"
   },
   {
-    id: "self-love",
-    title: "love letter to myself",
-    text: "I'm a dreamer enough to believe in magic, elegant enough to know my worth, and strong enough to walk away from anything that dims my light.",
-    label: "late-night thoughts"
+    id: "energy-alignment",
+    title: "aligning with high frequency",
+    text: "Today I noticed how my energy affects everything around me. When I vibrate at peace, people calm in my presence. When I radiate gratitude, miracles appear. We are magnetic beings.",
+    label: "energy work"
   },
   {
-    id: "cherry-lipstick",
-    title: "inspired by cherry lipstick",
-    text: "cherry red dress, golden hour light through lace curtains, Lana on repeat, hands full of intention. this is my aesthetic, my mood, my entire existence.",
-    label: "style note"
+    id: "moon-phase-ritual",
+    title: "waxing moon abundance",
+    text: "During the waxing moon, everything grows. My manifestations feel amplified. I'm writing down goals, speaking affirmations, and feeling my dreams become real before they arrive in the physical.",
+    label: "lunar practice"
   },
   {
-    id: "small-gestures",
-    title: "the magic of small gestures",
-    text: "A handwritten letter. Peonies on the table. Someone remembering how you take your coffee. These tiny details are how I show love, how I prove I care.",
-    label: "favorite moments"
+    id: "gratitude-shift",
+    title: "gratitude rewires reality",
+    text: "I spent today listing 50 things I'm grateful for. Halfway through, my mood shifted. By the end, I felt like the richest person alive. Gratitude is the highest frequency.",
+    label: "frequency shift"
   },
   {
-    id: "kind-gossip-girl",
-    title: "gossip girl energy but make it kind",
-    text: "Serena's elegance without the carelessness. Blair's ambition without the cruelty. I want their aesthetic but my own compass, my own heart.",
-    label: "journal entry"
+    id: "manifestation-writing",
+    title: "scripting my future",
+    text: "I write as if it has already happened: 'I am living in abundance. My dreams are manifesting with ease. I attract aligned opportunities daily.' Writing in present tense rewires my belief system.",
+    label: "manifestation technique"
   },
   {
-    id: "metaphysical-romantic",
-    title: "the metaphysical romantic",
-    text: "I read tarot like others read texts. I believe in manifestation, in moon phases affecting mood, in the universe listening when you whisper at midnight.",
-    label: "late-night thoughts"
+    id: "energy-cleansing",
+    title: "clearing stagnant energy",
+    text: "A simple ritual today: opened windows, burned sage, set the intention to release what no longer serves me. I felt the shift immediately. Energy work is real.",
+    label: "cleansing practice"
   },
   {
-    id: "becoming-her",
-    title: "becoming her",
-    text: "The version of me that knows she's enough. The one who believes in forever, who loves fiercely, who chooses herself first. She's not a dream anymore.",
-    label: "memory"
+    id: "abundance-mindset",
+    title: "choosing abundance over scarcity",
+    text: "The universe responds to my thoughts. When I think 'I don't have enough,' doors close. When I think 'I am abundant,' opportunities flood in. My thoughts are my most powerful tool.",
+    label: "mindset work"
   }
 ];

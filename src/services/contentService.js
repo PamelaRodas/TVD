@@ -2,8 +2,8 @@ import { defaultDiaryEntries } from "../data/diaryEntries";
 import { defaultPhotoMoments } from "../data/photoMoments";
 
 const STORAGE_KEYS = {
-  diary: "tvd:diaryEntries",
-  photos: "tvd:photoMoments",
+  diary: "manifestation:diaryEntries",
+  photos: "manifestation:photoMoments",
 };
 
 function readCollection(key, fallback) {
@@ -22,9 +22,17 @@ function writeCollection(key, value) {
   return value;
 }
 
+function normalizeAuthor(value) {
+  const author = String(value || '').trim();
+  return author || 'anonymous soul';
+}
+
 export function getDiaryEntries() {
   const saved = readCollection(STORAGE_KEYS.diary, defaultDiaryEntries);
-  return mergeWithDefaults(saved, defaultDiaryEntries);
+  return mergeWithDefaults(saved, defaultDiaryEntries).map((entry) => ({
+    ...entry,
+    author: normalizeAuthor(entry.author),
+  }));
 }
 
 export function addDiaryEntry(entry) {
@@ -33,6 +41,7 @@ export function addDiaryEntry(entry) {
     {
       id: `diary-${Date.now()}`,
       ...entry,
+      author: normalizeAuthor(entry.author),
     },
     ...current,
   ];
@@ -47,7 +56,10 @@ export function resetDiaryEntries() {
 
 export function getPhotoMoments() {
   const saved = readCollection(STORAGE_KEYS.photos, defaultPhotoMoments);
-  return mergeWithDefaults(saved, defaultPhotoMoments);
+  return mergeWithDefaults(saved, defaultPhotoMoments).map((moment) => ({
+    ...moment,
+    author: normalizeAuthor(moment.author),
+  }));
 }
 
 export function addPhotoMoment(moment) {
@@ -56,6 +68,7 @@ export function addPhotoMoment(moment) {
     {
       id: `photo-${Date.now()}`,
       ...moment,
+      author: normalizeAuthor(moment.author),
     },
     ...current,
   ];

@@ -7,10 +7,10 @@ export default function Footer() {
       <footer className="site-footer">
         <div className="footer-content">
           <div className="footer-line"></div>
-          <p className="footer-text">made of moonlight, red lipstick, and tiny memories.</p>
-          <span className="script-note">xoxo, luv.prc</span>
-          <p className="footer-tagline">yo con Dios, quien contra mi</p>
-          <span className="footer-brand">tvd journal</span>
+          <p className="footer-text">built with gratitude, discipline, and faith.</p>
+          <span className="script-note">all glory to God</span>
+          <p className="footer-tagline">grow with purpose. serve with love.</p>
+          <span className="footer-brand">Growth Journal</span>
 
           <div className="social-links" aria-label="Social links">
             <a href="https://instagram.com/iansomerhalder" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon">

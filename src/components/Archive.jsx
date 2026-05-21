@@ -1,23 +1,23 @@
 const archiveCards = [
   {
-    title: "favorite cafes",
-    description: "I collect quiet corners, candlelight, and porcelain cups marked with cherry lipstick.",
-    tone: "cafe"
+    title: "daily healthy practices",
+    description: "I practice morning prayer, gratitude, and reflective habits that keep me focused and grounded.",
+    tone: "practice"
   },
   {
-    title: "outfits",
-    description: "I rotate black satin, cream knitwear, lace gloves, and silver pieces that catch moonlight.",
-    tone: "outfits"
+    title: "growth tools",
+    description: "I use journaling, reflection, prayer, and meaningful habits that keep me focused and grounded.",
+    tone: "tools"
   },
   {
-    title: "books",
-    description: "I annotate pages, hide old letters inside novels, and reread stories that feel like vampire secrets.",
-    tone: "books"
+    title: "transformation reads",
+    description: "I study books on growth, personal growth, mindfulness, and spipractice development that expand my consciousness.",
+    tone: "reads"
   },
   {
-    title: "memories",
-    description: "I replay foggy windows, ravens at dusk, roses near antique mirrors, and rain after midnight.",
-    tone: "memories"
+    title: "meaningful moments",
+    description: "I collect full purposes, moments of clarity, synchronicities, answered prayers, and miracles I've witnessed manifesting.",
+    tone: "meaningful"
   }
 ];
 
@@ -25,8 +25,8 @@ export default function Archive() {
   return (
     <section className="section archive-section">
       <div className="section-heading">
-        <p className="eyebrow">Night Archive</p>
-        <h2>my personal vault of favorite moments, places, outfits, books, and memories</h2>
+        <p className="eyebrow">Energy Archive</p>
+        <h2>my personal vault of healthy practices, tools, reads, and meaningful moments that shaped my growth journey</h2>
       </div>
 
       <div className="archive-grid">
@@ -35,10 +35,12 @@ export default function Archive() {
             <span className="diary-label">{card.tone}</span>
             <h3>{card.title}</h3>
             <p>{card.description}</p>
-            <span className="script-note">written at 12:03 AM</span>
+            <span className="script-note">energy aligned</span>
           </article>
         ))}
       </div>
     </section>
   );
 }
+
+
