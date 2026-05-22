@@ -29,7 +29,7 @@ const homeVideos = [
 
 const reflectionCards = [
   { title: 'today i will finish', text: 'One task with full focus and no excuses.' },
-  { title: 'today i will trust', text: 'God’s process while I do my part faithfully.' },
+  { title: 'today i will trust', text: 'God\'s process while I do my part faithfully.' },
   { title: 'today i will serve', text: 'One practical action that helps someone else.' },
   { title: 'today i will grow', text: 'Small consistency that builds long-term strength.' },
 ];
