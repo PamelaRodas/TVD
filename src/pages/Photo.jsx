@@ -47,15 +47,15 @@ export default function PhotoDump() {
       />
       <section id="photo-dump" className="section photo-dump-section">
         <PageHeader
-          eyebrow="Photo Album"
-          title="meaningful energy moments"
+          eyebrow="Álbum de Fotos"
+          title="momentos de energía significativa"
         >
-          Visual representations of healthy practices, intentions, and the energy that surrounds our growth practice.
+          Representaciones visuales de prácticas saludables, intenciones y la energía que rodea nuestra práctica de crecimiento.
         </PageHeader>
 
         {moments.length === 0 ? (
-          <EmptyState title="no moments yet">
-            Add your first energy moment from Studio and it will appear here.
+          <EmptyState title="sin momentos aún">
+            Agrega tu primer momento de energía desde Estudio y aparecerá aquí.
           </EmptyState>
         ) : (
           <>
@@ -69,32 +69,32 @@ export default function PhotoDump() {
               </button>
 
               <div className="photo-feature-copy">
-                <span className="diary-label">featured moment</span>
+                <span className="diary-label">momento destacado</span>
                 <h3>{featuredMoment.caption}</h3>
-                <p className="entry-author">by {featuredMoment.author || 'anonymous soul'}</p>
+                <p className="entry-author">por {featuredMoment.author || 'alma anónima'}</p>
                 <p>
-                  A meaningful image chosen for its energy, intention, and power to anchor your growth practice.
+                  Una imagen significativa elegida por su energía, intención y poder para anclar tu práctica de crecimiento.
                 </p>
                 <div className="photo-feature-actions">
                   <button className="primary-button" type="button" onClick={() => openLightbox(0)}>
-                    view moment
+                    ver momento
                   </button>
                   <button
                     className="secondary-button"
                     type="button"
                     onClick={(event) => togglePhotoFavorite(event, featuredMoment.id)}
                   >
-                    {isFavorite('photos', featuredMoment.id) ? 'saved' : 'save'}
+                    {isFavorite('photos', featuredMoment.id) ? 'guardado' : 'guardar'}
                   </button>
                 </div>
               </div>
             </div>
 
             <div className="photo-strip" aria-hidden="true">
-              <span>healthy practices</span>
-              <span>focus</span>
-              <span>personal growth</span>
-              <span>meaningful moments</span>
+              <span>prácticas saludables</span>
+              <span>enfoque</span>
+              <span>crecimiento personal</span>
+              <span>momentos significativos</span>
             </div>
 
             <div className="photo-grid">

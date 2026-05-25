@@ -48,38 +48,38 @@ export default function Diary() {
 
   return (
     <section id="diary" className="section diary-section">
-      <PageHeader eyebrow="Diary" title="Your Manifestation Journal">
-        A living record of your intentions, rituals, and daily energy notes.
+      <PageHeader eyebrow="Diario" title="Tu Diario de Manifestación">
+        Un registro vivo de tus intenciones, rituales y notas de energía diaria.
       </PageHeader>
 
       <div className="diary-topbar">
         <div className="diary-summary-card diary-note-card">
-          <span className="diary-label">Studio Journal</span>
-          <h3>Entries created in Studio are stored here automatically.</h3>
-          <p>Use the Studio page to add new prompts, rituals, or growth notes. They will appear in this journal view.</p>
+          <span className="diary-label">Diario del Estudio</span>
+          <h3>Las entradas creadas en Estudio se guardan aquí automáticamente.</h3>
+          <p>Usa la página de Estudio para agregar nuevas preguntas, rituales o notas de crecimiento. Aparecerán en esta vista de diario.</p>
         </div>
 
         <div className="diary-summary-card diary-stats-card">
-          <span className="diary-label">Manifestation Stats</span>
+          <span className="diary-label">Estadísticas de Manifestación</span>
           <div className="stats-grid">
             <div>
               <strong>{entryCount}</strong>
-              <p>entries</p>
+              <p>entradas</p>
             </div>
             <div>
               <strong>{streakDays}</strong>
-              <p>active days</p>
+              <p>días activos</p>
             </div>
             <div>
               <strong>{favorites.length}</strong>
-              <p>favorites</p>
+              <p>favoritos</p>
             </div>
           </div>
         </div>
       </div>
 
       {entries.length === 0 ? (
-        <EmptyState title="no entries yet">Start your manifestation practice from Studio and it will appear here.</EmptyState>
+        <EmptyState title="sin entradas aún">Comienza tu práctica de manifestación desde Estudio y aparecerá aquí.</EmptyState>
       ) : (
         <div className="diary-grid">
           {entries.map((entry) => {

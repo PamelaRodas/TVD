@@ -1,58 +1,58 @@
 import { useEffect, useState } from 'react';
 
 const littleThings = [
-  "handwritten affirmations and growth letters",
-  "daily reflection and prayer",
-  "time with loved ones, the safest space",
-  "serving others with empathy",
-  "stories that feel like transformation",
-  "music that brings peace and focus",
-  "moments of reflection, prayer, and intentional silence",
-  "building habits that honor God"
+  "afirmaciones escritas a mano y cartas de crecimiento",
+  "reflexión diaria y oración",
+  "tiempo con seres queridos, el espacio más seguro",
+  "servir a otros con empatía",
+  "historias que se sienten como transformación",
+  "música que trae paz y enfoque",
+  "momentos de reflexión, oración y silencio intencional",
+  "construir hábitos que honren a Dios"
 ];
 
 const rotatingQuotes = [
-  'your focus writes your future.',
-  'clarity + intention + action = growth.',
-  'discipline today, peace tomorrow.',
-  'with God, progress is never wasted.',
+  'tu enfoque escribe tu futuro.',
+  'claridad + intención + acción = crecimiento.',
+  'disciplina hoy, paz mañana.',
+  'con Dios, el progreso nunca se desperdicia.',
 ];
 
 const journeyMoments = [
   {
     id: 'foundation',
     step: '01',
-    title: 'foundation season',
-    verse: 'Proverbs 16:3',
-    reflection: 'Commit your work to the Lord and build your day with clear priorities.',
-    action: 'Write one goal and one action for today before starting your routine.',
+    title: 'estación de fundación',
+    verse: 'Proverbios 16:3',
+    reflection: 'Encomienda tu trabajo al Señor y construye tu día con prioridades claras.',
+    action: 'Escribe una meta y una acción para hoy antes de comenzar tu rutina.',
     image: 'https://i.pinimg.com/736x/31/db/8b/31db8b3a216ad31112a60bff8e2e0acb.jpg'
   },
   {
     id: 'discipline',
     step: '02',
-    title: 'discipline season',
-    verse: 'Galatians 6:9',
-    reflection: 'Consistency in small actions creates visible progress over time.',
-    action: 'Complete one task you have postponed this week.',
+    title: 'estación de disciplina',
+    verse: 'Gálatas 6:9',
+    reflection: 'La consistencia en pequeñas acciones crea progreso visible a lo largo del tiempo.',
+    action: 'Completa una tarea que has pospuesto esta semana.',
     image: 'https://i.pinimg.com/736x/28/ea/cb/28eacb713bc16c7518b2bded6e1b872b.jpg'
   },
   {
     id: 'service',
     step: '03',
-    title: 'service season',
-    verse: 'Matthew 5:16',
-    reflection: 'Growth is deeper when it blesses someone else too.',
-    action: 'Do one practical act of kindness today without expecting recognition.',
+    title: 'estación de servicio',
+    verse: 'Mateo 5:16',
+    reflection: 'El crecimiento es más profundo cuando también bendice a alguien más.',
+    action: 'Haz un acto práctico de bondad hoy sin esperar reconocimiento.',
     image: 'https://i.pinimg.com/1200x/f4/1c/17/f41c1752e32705d47a42fe0efdc79185.jpg'
   },
   {
     id: 'purpose',
     step: '04',
-    title: 'purpose season',
-    verse: 'Jeremiah 29:11',
-    reflection: 'Trust that God is guiding your process even when it feels slow.',
-    action: 'Review your week and note 3 ways God has helped you move forward.',
+    title: 'estación de propósito',
+    verse: 'Jeremías 29:11',
+    reflection: 'Confía en que Dios está guiando tu proceso incluso cuando se siente lento.',
+    action: 'Revisa tu semana y anota 3 formas en que Dios te ha ayudado a avanzar.',
     image: 'https://i.pinimg.com/1200x/76/df/be/76dfbe2db895b14dc049dfe074c390a0.jpg'
   },
 ];
@@ -74,39 +74,39 @@ export default function About() {
   return (
     <section id="about-me" className="section about-section">
       <div className="section-heading">
-        <p className="eyebrow">About Me</p>
-        <h2>faith-driven, intentional, and committed to growth</h2>
+        <p className="eyebrow">Acerca de mí</p>
+        <h2>impulsada por fe, intencional y comprometida con el crecimiento</h2>
       </div>
 
       <div className="about-profile-band">
         <figure className="cosmic-avatar-frame">
           <img src={avatarImage} alt="profile" />
-          <figcaption>walking in purpose</figcaption>
+          <figcaption>caminando en propósito</figcaption>
         </figure>
 
         <div className="quote-rotator">
-          <p className="diary-label">current focus</p>
+          <p className="diary-label">enfoque actual</p>
           <h3>{rotatingQuotes[quoteIndex]}</h3>
         </div>
       </div>
 
       <div className="about-grid">
         <article className="about-card profile-card">
-          <span className="diary-label">hello, this is my world</span>
-          <h3>grounded in faith, focused on progress</h3>
+          <span className="diary-label">hola, este es mi mundo</span>
+          <h3>enraizada en fe, enfocada en progreso</h3>
           <p>
-            I believe in growing with responsibility, gratitude, and faith in God.
-            This space helps me stay intentional, reflect often, and keep moving with purpose.
+            Creo en crecer con responsabilidad, gratitud y fe en Dios.
+            Este espacio me ayuda a mantenerme intencional, reflexionar a menudo y seguir avanzando con propósito.
           </p>
           <div className="profile-stats">
-            <span><strong>mood:</strong> calm, focused, grateful</span>
-            <span><strong>style:</strong> purposeful and disciplined</span>
-            <span><strong>core value:</strong> faith + consistency + service</span>
+            <span><strong>ánimo:</strong> tranquilo, enfocado, agradecido</span>
+            <span><strong>estilo:</strong> propositivo y disciplinado</span>
+            <span><strong>valor central:</strong> fe + consistencia + servicio</span>
           </div>
         </article>
 
         <article className="about-card loves-card">
-          <span className="diary-label">little things I love lately</span>
+          <span className="diary-label">las pequeñas cosas que amo últimamente</span>
           <ul className="loves-list">
             {littleThings.map((item) => (
               <li key={item}>{item}</li>
@@ -117,19 +117,19 @@ export default function About() {
         <article className="about-card quote-card">
           <p className="quote-mark">"</p>
           <p>
-            This space is a reminder that small daily choices shape a meaningful life.
-            With faith, discipline, and gratitude, growth becomes steady and real.
+            Este espacio es un recordatorio de que las pequeñas elecciones diarias crean una vida significativa.
+            Con fe, disciplina y gratitud, el crecimiento se vuelve constante y real.
           </p>
           <div className="closing-signature">
-            <p>with gratitude,</p>
-            <p className="xoxo">all glory to God</p>
-            <p className="faith">one day at a time, with purpose</p>
+            <p>con gratitud,</p>
+            <p className="xoxo">toda gloria a Dios</p>
+            <p className="faith">un día a la vez, con propósito</p>
           </div>
         </article>
       </div>
 
       <section className="journey-explorer">
-        <p className="diary-label">interactive journey explorer</p>
+        <p className="diary-label">explorador de viaje interactivo</p>
 
         <div className="journey-tabs" role="tablist" aria-label="journey moments">
           {journeyMoments.map((moment) => (
@@ -152,7 +152,7 @@ export default function About() {
             <h3>{activeJourney.title}</h3>
             <p>{activeJourney.reflection}</p>
             <div className="journey-action">
-              <span>today's action</span>
+              <span>acción de hoy</span>
               <strong>{activeJourney.action}</strong>
             </div>
           </div>

@@ -1,30 +1,30 @@
 import { useState, useEffect } from 'react';
 
 const affirmations = [
-  "God guides my steps every day",
-  "I grow with discipline, faith, and purpose",
-  "My thoughts, words, and actions are aligned",
-  "I am grateful for every new opportunity",
-  "I trust God's timing in every process",
-  "I choose peace, clarity, and consistency",
-  "I am becoming the person I am called to be",
-  "Today I move forward with courage",
+  "Dios guía mis pasos cada día",
+  "Crezco con disciplina, fe y propósito",
+  "Mis pensamientos, palabras y acciones están alineados",
+  "Estoy agradecido por cada nueva oportunidad",
+  "Confío en el tiempo de Dios en cada proceso",
+  "Elijo paz, claridad y consistencia",
+  "Me estoy convirtiendo en la persona que estoy llamado a ser",
+  "Hoy avanzo con coraje",
 ];
 
 const growthPrompts = [
-  "What goal will you work on today?",
-  "What habit do you want to strengthen this week?",
-  "What do you need to let go of to move forward?",
-  "What are you grateful for today?",
-  "How can you serve others better this week?",
-  "What is one action you can take right now?",
+  "¿En qué meta trabajarás hoy?",
+  "¿Qué hábito quieres fortalecer esta semana?",
+  "¿Qué necesitas soltar para avanzar?",
+  "¿Por qué estoy agradecido hoy?",
+  "¿Cómo puedo servir mejor a otros esta semana?",
+  "¿Cuál es una acción que puedo tomar ahora mismo?",
 ];
 
 const growthVideos = [
-  { id: 'trg06GQ3VkU', title: 'Growth video 1' },
-  { id: 'm82svXjWpwE', title: 'Growth video 2' },
-  { id: 'aFGS8BPxYy0', title: 'Growth video 3' },
-  { id: 'QX70le3E9hM', title: 'Growth video 4' },
+  { id: 'trg06GQ3VkU', title: 'Video de crecimiento 1' },
+  { id: 'm82svXjWpwE', title: 'Video de crecimiento 2' },
+  { id: 'aFGS8BPxYy0', title: 'Video de crecimiento 3' },
+  { id: 'QX70le3E9hM', title: 'Video de crecimiento 4' },
 ];
 
 export default function Manifestation() {
@@ -107,16 +107,16 @@ export default function Manifestation() {
   return (
     <section className="manifestation-section section">
       <div className="section-heading">
-        <p className="eyebrow">Growth</p>
-        <h2>faith, focus, and daily progress</h2>
+        <p className="eyebrow">Crecimiento</p>
+        <h2>fe, enfoque y progreso diario</h2>
       </div>
 
       <div className="growth-progress-panel">
-        <div><span className="diary-label">days in progress</span><strong>{growthDays}</strong></div>
-        <div><span className="diary-label">weekly check-ins</span><strong>{completedDays}/7</strong></div>
-        <div><span className="diary-label">consistency</span><strong>{consistency}%</strong></div>
-        <div><span className="diary-label">current streak</span><strong>{currentStreak} days</strong></div>
-        <div><span className="diary-label">best streak</span><strong>{bestStreak} days</strong></div>
+        <div><span className="diary-label">días en progreso</span><strong>{growthDays}</strong></div>
+        <div><span className="diary-label">verificaciones semanales</span><strong>{completedDays}/7</strong></div>
+        <div><span className="diary-label">consistencia</span><strong>{consistency}%</strong></div>
+        <div><span className="diary-label">racha actual</span><strong>{currentStreak} días</strong></div>
+        <div><span className="diary-label">mejor racha</span><strong>{bestStreak} días</strong></div>
       </div>
 
       <div className="weekly-check-grid">
@@ -170,27 +170,27 @@ export default function Manifestation() {
       </div>
 
       <div className="manifestation-steps">
-        <h3>practical growth path</h3>
+        <h3>camino de crecimiento práctico</h3>
         <div className="steps-grid">
-          <div className="step-card"><div className="step-number">1</div><h4>clarity</h4><p>define one clear goal with a real deadline.</p></div>
-          <div className="step-card"><div className="step-number">2</div><h4>discipline</h4><p>work daily in small actions, even when motivation is low.</p></div>
-          <div className="step-card"><div className="step-number">3</div><h4>faith</h4><p>trust God while doing your part with integrity and perseverance.</p></div>
-          <div className="step-card"><div className="step-number">4</div><h4>gratitude</h4><p>thank God for progress and lessons while you keep moving forward.</p></div>
+          <div className="step-card"><div className="step-number">1</div><h4>claridad</h4><p>define una meta clara con una fecha límite real.</p></div>
+          <div className="step-card"><div className="step-number">2</div><h4>disciplina</h4><p>trabaja diariamente en pequeñas acciones, incluso cuando la motivación es baja.</p></div>
+          <div className="step-card"><div className="step-number">3</div><h4>fe</h4><p>confía en Dios mientras haces tu parte con integridad y perseverancia.</p></div>
+          <div className="step-card"><div className="step-number">4</div><h4>gratitud</h4><p>agradece a Dios por el progreso y las lecciones mientras avanzas.</p></div>
         </div>
       </div>
 
       <div className="rituals-section">
-        <h3>healthy daily practices</h3>
+        <h3>prácticas diarias saludables</h3>
         <div className="rituals-grid">
-          <div className="ritual-card"><span className="ritual-icon">01</span><h4>morning prayer</h4><p>start your day with prayer and gratitude before any task.</p></div>
-          <div className="ritual-card"><span className="ritual-icon">02</span><h4>intentional journaling</h4><p>write what you learned, what you need, and what you will do today.</p></div>
-          <div className="ritual-card"><span className="ritual-icon">03</span><h4>quiet reflection</h4><p>take a few minutes in silence to reset your mind and priorities.</p></div>
-          <div className="ritual-card"><span className="ritual-icon">04</span><h4>service mindset</h4><p>look for one concrete way to help someone each day.</p></div>
+          <div className="ritual-card"><span className="ritual-icon">01</span><h4>oración matutina</h4><p>comienza tu día con oración y gratitud antes de cualquier tarea.</p></div>
+          <div className="ritual-card"><span className="ritual-icon">02</span><h4>escritura intencional</h4><p>escribe lo que aprendiste, lo que necesitas y lo que harás hoy.</p></div>
+          <div className="ritual-card"><span className="ritual-icon">03</span><h4>reflexión silenciosa</h4><p>toma unos minutos en silencio para reiniciar tu mente y prioridades.</p></div>
+          <div className="ritual-card"><span className="ritual-icon">04</span><h4>mentalidad de servicio</h4><p>busca una forma concreta de ayudar a alguien cada día.</p></div>
         </div>
       </div>
 
       <div className="growth-videos-section">
-        <h3>recommended videos</h3>
+        <h3>videos recomendados</h3>
         <div className="growth-videos-grid">
           {growthVideos.map((video) => (
             <article key={video.id} className="growth-video-card">
