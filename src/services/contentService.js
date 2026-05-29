@@ -1,89 +1,125 @@
 import { defaultDiaryEntries } from "../data/diaryEntries";
 import { defaultPhotoMoments } from "../data/photoMoments";
 
-const STORAGE_KEYS = {
-  diary: "manifestation:diaryEntries",
-  photos: "manifestation:photoMoments",
-};
-
-function readCollection(key, fallback) {
-  const saved = localStorage.getItem(key);
-  return saved ? JSON.parse(saved) : fallback;
-}
-
-function mergeWithDefaults(savedItems, defaultItems) {
-  const defaultIds = new Set(defaultItems.map((item) => item.id));
-  const customItems = savedItems.filter((item) => !defaultIds.has(item.id));
-  return [...defaultItems, ...customItems];
-}
-
-function writeCollection(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-  return value;
-}
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
 
 function normalizeAuthor(value) {
   const author = String(value || '').trim();
   return author || 'anonymous soul';
 }
 
-export function getDiaryEntries() {
-  const saved = readCollection(STORAGE_KEYS.diary, defaultDiaryEntries);
-  return mergeWithDefaults(saved, defaultDiaryEntries).map((entry) => ({
-    ...entry,
-    author: normalizeAuthor(entry.author),
-  }));
-}
-
-export function addDiaryEntry(entry) {
-  const current = getDiaryEntries();
-  const next = [
-    {
-      id: `diary-${Date.now()}`,
-      ...entry,
-      author: normalizeAuthor(entry.author),
-    },
-    ...current,
-  ];
-
-  return writeCollection(STORAGE_KEYS.diary, next);
-}
-
-export function resetDiaryEntries() {
-  localStorage.removeItem(STORAGE_KEYS.diary);
+export async function getDiaryEntries() {
+  try {
+    const response = await fetch(`${API_URL}/diary`);
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error('Error fetching diary entries:', error);
+  }
+  // Fallback to default entries if API fails
   return defaultDiaryEntries;
 }
 
-export function getPhotoMoments() {
-  const saved = readCollection(STORAGE_KEYS.photos, defaultPhotoMoments);
-  return mergeWithDefaults(saved, defaultPhotoMoments).map((moment) => ({
-    ...moment,
-    author: normalizeAuthor(moment.author),
-  }));
+export async function addDiaryEntry(entry) {
+  try {
+    const response = await fetch(`${API_URL}/diary`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...entry,
+        author: normalizeAuthor(entry.author),
+      }),
+    });
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error('Error adding diary entry:', error);
+  }
+  // Return the entry if API fails
+  return {
+    id: `diary-${Date.now()}`,
+    ...entry,
+    author: normalizeAuthor(entry.author),
+  };
 }
 
-export function addPhotoMoment(moment) {
-  const current = getPhotoMoments();
-  const next = [
-    {
-      id: `photo-${Date.now()}`,
-      ...moment,
-      author: normalizeAuthor(moment.author),
-    },
-    ...current,
-  ];
-
-  return writeCollection(STORAGE_KEYS.photos, next);
+export async function resetDiaryEntries() {
+  try {
+    const response = await fetch(`${API_URL}/diary`, { method: 'DELETE' });
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error('Error resetting diary entries:', error);
+  }
+  return defaultDiaryEntries;
 }
 
-export function resetPhotoMoments() {
-  localStorage.removeItem(STORAGE_KEYS.photos);
+export async function getPhotoMoments() {
+  try {
+    const response = await fetch(`${API_URL}/photos`);
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error('Error fetching photo moments:', error);
+  }
+  // Fallback to default photos if API fails
   return defaultPhotoMoments;
 }
 
-export function getContentSummary() {
+export async function addPhotoMoment(moment) {
+  try {
+    const response = await fetch(`${API_URL}/photos`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...moment,
+        author: normalizeAuthor(moment.author),
+      }),
+    });
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error('Error adding photo moment:', error);
+  }
+  // Return the moment if API fails
   return {
-    diaryCount: getDiaryEntries().length,
-    photoCount: getPhotoMoments().length,
+    id: `photo-${Date.now()}`,
+    ...moment,
+    author: normalizeAuthor(moment.author),
+  };
+}
+
+export async function resetPhotoMoments() {
+  try {
+    const response = await fetch(`${API_URL}/photos`, { method: 'DELETE' });
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error('Error resetting photo moments:', error);
+  }
+  return defaultPhotoMoments;
+}
+
+export async function getContentSummary() {
+  try {
+    const response = await fetch(`${API_URL}/content/summary`);
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error('Error fetching content summary:', error);
+  }
+  // Fallback calculation
+  const diary = await getDiaryEntries();
+  const photos = await getPhotoMoments();
+  return {
+    diaryCount: diary.length,
+    photoCount: photos.length,
   };
 }

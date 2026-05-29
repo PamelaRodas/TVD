@@ -6,32 +6,32 @@ import ParallaxSection from './ParallaxSection';
 const heroImage = "https://i.pinimg.com/1200x/a9/95/73/a9957370978d94c77f456e662397624f.jpg";
 
 const focusPrompts = [
-  '¿Cuál es una acción que puedo terminar hoy?',
-  '¿Qué necesito entregar a Dios hoy?',
-  '¿A quién puedo servir con una acción práctica?',
-  '¿Qué hábito mejorará mi semana?',
-  '¿Qué debo dejar de posponer ahora?',
+  'What is one action I can complete today?',
+  'What do I need to surrender to God today?',
+  'Who can I serve with a practical action?',
+  'What habit will improve my week?',
+  'What should I stop postponing right now?',
 ];
 
 const verses = [
-  "Filipenses 4:13 - Todo lo puedo en Cristo que me fortalece.",
-  "Proverbios 3:5 - Confía en el Señor con todo tu corazón.",
-  "Salmo 46:1 - Dios es nuestro refugio y fortaleza.",
-  "Isaías 41:10 - No temas, pues yo estoy contigo.",
-  "Jeremías 29:11 - Yo sé los planes que tengo para ti, dice el Señor.",
+  "Philippians 4:13 - I can do all things through Christ who strengthens me.",
+  "Proverbs 3:5 - Trust in the Lord with all your heart.",
+  "Psalm 46:1 - God is our refuge and strength.",
+  "Isaiah 41:10 - Fear not, for I am with you.",
+  "Jeremiah 29:11 - I know the plans I have for you, declares the Lord.",
 ];
 
 const homeVideos = [
-  { id: 'trg06GQ3VkU', title: 'Fe y disciplina' },
-  { id: 'm82svXjWpwE', title: 'Consistencia y enfoque' },
-  { id: 'aFGS8BPxYy0', title: 'Propósito y gratitud' },
+  { id: 'trg06GQ3VkU', title: 'Faith and Discipline' },
+  { id: 'm82svXjWpwE', title: 'Consistency and Focus' },
+  { id: 'aFGS8BPxYy0', title: 'Purpose and Gratitude' },
 ];
 
 const reflectionCards = [
-  { title: 'hoy terminaré', text: 'Una tarea con enfoque total y sin excusas.' },
-  { title: 'hoy confiaré', text: 'En el proceso de Dios mientras hago mi parte fielmente.' },
-  { title: 'hoy serviré', text: 'Una acción práctica que ayude a otros.' },
-  { title: 'hoy crecerré', text: 'Pequeña consistencia que construye una fortaleza duradera.' },
+  { title: 'today I will finish', text: 'One task with complete focus and no excuses.' },
+  { title: 'today I will trust', text: 'In God\'s process while I do my part faithfully.' },
+  { title: 'today I will serve', text: 'With a practical action that helps others.' },
+  { title: 'today I will grow', text: 'Small consistency builds lasting strength.' },
 ];
 
 export default function Hero() {
@@ -71,39 +71,39 @@ export default function Hero() {
 
           <div className="hero-copy">
             <div className="hero-heading">
-              <p className="eyebrow hero-kicker">fe + propósito + crecimiento</p>
-              <h1 className="hero-title">crece con intención y la guía de Dios</h1>
-              <p className="hero-subtitle">un diario personal para disciplina, gratitud, reflexión y progreso diario</p>
+              <p className="eyebrow hero-kicker">faith + purpose + growth</p>
+              <h1 className="hero-title">grow with intention and God's guidance</h1>
+              <p className="hero-subtitle">a personal journal for discipline, gratitude, reflection and daily progress</p>
             </div>
 
             <div className="hero-actions">
-              <Link className="primary-button" to="/diary">abre tu diario</Link>
-              <Link className="secondary-button" to="/growth">visita Crecimiento</Link>
+              <Link className="primary-button" to="/diary">open your journal</Link>
+              <Link className="secondary-button" to="/growth">visit growth</Link>
             </div>
 
             <div className="hero-tags">
-              <span>gratitud</span>
-              <span>oración</span>
-              <span>disciplina</span>
-              <span>enfoque</span>
-              <span>propósito</span>
-              <span>servicio</span>
-              <span>consistencia</span>
+              <span>gratitude</span>
+              <span>prayer</span>
+              <span>discipline</span>
+              <span>focus</span>
+              <span>purpose</span>
+              <span>service</span>
+              <span>consistency</span>
             </div>
 
             <div className="gratitude-widget">
-              <p className="diary-label">pregunta de enfoque</p>
+              <p className="diary-label">focus question</p>
               <strong>{focusPrompts[promptIndex]}</strong>
               <div className="gratitude-actions">
-                <button className="primary-button" type="button" onClick={nextPrompt}>siguiente pregunta</button>
+                <button className="primary-button" type="button" onClick={nextPrompt}>next question</button>
               </div>
             </div>
 
             <div className="verse-widget">
-              <p className="diary-label">versículo del día</p>
+              <p className="diary-label">verse of the day</p>
               <strong>{verses[verseIndex]}</strong>
               <div className="gratitude-actions">
-                <button className="secondary-button" type="button" onClick={nextVerse}>otro versículo</button>
+                <button className="secondary-button" type="button" onClick={nextVerse}>another verse</button>
               </div>
             </div>
           </div>
@@ -115,30 +115,30 @@ export default function Hero() {
       <ParallaxSection intensity={0.2}>
         <section className="featured-content section">
           <div className="featured-header">
-            <h2 className="section-title">qué encontrarás aquí</h2>
+            <h2 className="section-title">what you'll find here</h2>
             <div className="title-accent">No. 01</div>
           </div>
 
           <div className="featured-grid">
             <div className="feature-card">
               <div className="feature-icon">01</div>
-              <h3>diario de crecimiento</h3>
-              <p>notas diarias para alinear tus metas, pensamientos y acciones.</p>
-              <Link to="/diary" className="feature-link">explorar {'->'}</Link>
+              <h3>growth journal</h3>
+              <p>daily notes to align your goals, thoughts and actions.</p>
+              <Link to="/diary" className="feature-link">explore {'->'}</Link>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon">02</div>
-              <h3>enfoque basado en fe</h3>
-              <p>pasos prácticos de oración, gratitud y disciplina para crecimiento real.</p>
-              <Link to="/growth" className="feature-link">explorar {'->'}</Link>
+              <h3>faith-based focus</h3>
+              <p>practical steps of prayer, gratitude and discipline for real growth.</p>
+              <Link to="/growth" className="feature-link">explore {'->'}</Link>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon">03</div>
-              <h3>momentos de propósito</h3>
-              <p>imágenes y reflexiones que te recuerdan hacia dónde vas.</p>
-              <Link to="/photo-dump" className="feature-link">descubrir {'->'}</Link>
+              <h3>moments of purpose</h3>
+              <p>images and reflections to remind you where you're heading.</p>
+              <Link to="/photo-dump" className="feature-link">discover {'->'}</Link>
             </div>
           </div>
         </section>
@@ -146,7 +146,7 @@ export default function Hero() {
 
       <section className="home-video-section section">
         <div className="featured-header">
-          <h2 className="section-title">destacados de video</h2>
+          <h2 className="section-title">video highlights</h2>
           <div className="title-accent">No. 02</div>
         </div>
         <div className="home-video-grid">
@@ -167,7 +167,7 @@ export default function Hero() {
 
       <section className="home-reflection-section section">
         <div className="featured-header">
-          <h2 className="section-title">flujo de reflexión</h2>
+          <h2 className="section-title">reflection flow</h2>
           <div className="title-accent">No. 03</div>
         </div>
         <div className="reflection-carousel-track">
@@ -182,22 +182,22 @@ export default function Hero() {
 
       <section className="intro-section section">
         <div className="intro-content">
-          <h2 className="section-title">bienvenido a tu espacio de propósito</h2>
+          <h2 className="section-title">welcome to your purpose space</h2>
 
           <p className="intro-text">
-            este es un espacio para crecer con claridad, responsabilidad y fe. cada página está diseñada para ayudarte a avanzar con intención.
+            this is a space to grow with clarity, responsibility and faith. each page is designed to help you move forward with intention.
           </p>
 
           <p className="intro-text">
-            aquí buscamos progreso que honre a Dios: acciones consistentes, corazón agradecido y servicio a otros.
+            here we seek progress that honors God: consistent actions, a grateful heart and service to others.
           </p>
 
-          <div className="intro-divider">camina en propósito cada día</div>
+          <div className="intro-divider">walk in purpose every day</div>
 
           <div className="cta-secondary">
-            <p>¿listo para comenzar?</p>
+            <p>ready to begin?</p>
             <Link to="/diary" className="nav-pill">
-              <span>comienza aquí</span>
+              <span>start here</span>
               <span aria-hidden="true">{'->'}</span>
             </Link>
           </div>
@@ -205,10 +205,10 @@ export default function Hero() {
       </section>
 
       <section className="faith-tribute section">
-        <p className="eyebrow">Tributo</p>
-        <h2>todo honor y gloria a Dios</h2>
+        <p className="eyebrow">Tribute</p>
+        <h2>all honor and glory to God</h2>
         <p>
-          este proyecto es una pequeña ofrenda de gratitud. que cada meta, cada paso y cada logro sea dirigido por Dios y usado para el bien.
+          this project is a small offering of gratitude. may every goal, every step and every achievement be guided by God and used for good.
         </p>
       </section>
     </>

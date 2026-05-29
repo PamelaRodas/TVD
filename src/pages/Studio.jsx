@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageHeader from '../components/PageHeader';
 import {
   addDiaryEntry,
@@ -26,12 +26,35 @@ const emptyPhotoForm = {
 export default function Studio() {
   const [diaryForm, setDiaryForm] = useState(emptyDiaryForm);
   const [photoForm, setPhotoForm] = useState(emptyPhotoForm);
-  const [diaryEntries, setDiaryEntries] = useState(() => getDiaryEntries());
-  const [photoMoments, setPhotoMoments] = useState(() => getPhotoMoments());
-  const [summary, setSummary] = useState(() => getContentSummary());
+  const [diaryEntries, setDiaryEntries] = useState([]);
+  const [photoMoments, setPhotoMoments] = useState([]);
+  const [summary, setSummary] = useState({ diaryCount: 0, photoCount: 0 });
+  const [loading, setLoading] = useState(true);
 
-  const refreshSummary = () => {
-    setSummary(getContentSummary());
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    setLoading(true);
+    try {
+      const [entries, photos, contentSummary] = await Promise.all([
+        getDiaryEntries(),
+        getPhotoMoments(),
+        getContentSummary(),
+      ]);
+      setDiaryEntries(entries);
+      setPhotoMoments(photos);
+      setSummary(contentSummary);
+    } catch (error) {
+      console.error('Error loading data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const refreshData = async () => {
+    await loadData();
   };
 
   const updateDiaryField = (field, value) => {
@@ -42,7 +65,7 @@ export default function Studio() {
     setPhotoForm((current) => ({ ...current, [field]: value }));
   };
 
-  const handleDiarySubmit = (event) => {
+  const handleDiarySubmit = async (event) => {
     event.preventDefault();
     const author = diaryForm.author.trim() || 'anonymous soul';
     const title = diaryForm.title.trim();
@@ -51,13 +74,16 @@ export default function Studio() {
 
     if (!title || !text) return;
 
-    const updated = addDiaryEntry({ author, title, text, label });
-    setDiaryEntries(updated);
-    setDiaryForm({ ...emptyDiaryForm, author });
-    refreshSummary();
+    try {
+      await addDiaryEntry({ author, title, text, label });
+      setDiaryForm({ ...emptyDiaryForm, author });
+      await refreshData();
+    } catch (error) {
+      console.error('Error adding diary entry:', error);
+    }
   };
 
-  const handlePhotoSubmit = (event) => {
+  const handlePhotoSubmit = async (event) => {
     event.preventDefault();
     const author = photoForm.author.trim() || 'anonymous soul';
     const image = photoForm.image.trim();
@@ -65,22 +91,31 @@ export default function Studio() {
 
     if (!image || !caption) return;
 
-    const updated = addPhotoMoment({ author, image, caption });
-    setPhotoMoments(updated);
-    setPhotoForm({ ...emptyPhotoForm, author });
-    refreshSummary();
+    try {
+      await addPhotoMoment({ author, image, caption });
+      setPhotoForm({ ...emptyPhotoForm, author });
+      await refreshData();
+    } catch (error) {
+      console.error('Error adding photo moment:', error);
+    }
   };
 
-  const handleResetDiary = () => {
-    const updated = resetDiaryEntries();
-    setDiaryEntries(updated);
-    refreshSummary();
+  const handleResetDiary = async () => {
+    try {
+      await resetDiaryEntries();
+      await refreshData();
+    } catch (error) {
+      console.error('Error resetting diary:', error);
+    }
   };
 
-  const handleResetPhotos = () => {
-    const updated = resetPhotoMoments();
-    setPhotoMoments(updated);
-    refreshSummary();
+  const handleResetPhotos = async () => {
+    try {
+      await resetPhotoMoments();
+      await refreshData();
+    } catch (error) {
+      console.error('Error resetting photos:', error);
+    }
   };
 
   return (

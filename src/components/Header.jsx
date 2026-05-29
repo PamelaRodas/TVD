@@ -18,20 +18,20 @@ export default function Header() {
       <nav className="topnav">
         <a className="brand" href="#home">
           <span className="brand-symbol">M</span>
-          Diario de Crecimiento
+          Growth Journal
         </a>
 
         <ul className="nav-links">
-          <li><Link to="/">Inicio</Link></li>
-          <li><Link to="/diary">Diario</Link></li>
-          <li><Link to="/photo-dump">Galería</Link></li>
-          <li><Link to="/growth">Crecimiento</Link></li>
-          <li><Link to="/about">Acerca de</Link></li>
-          <li><Link to="/studio">Estudio</Link></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/diary">Diary</Link></li>
+          <li><Link to="/photo-dump">Gallery</Link></li>
+          <li><Link to="/growth">Growth</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/studio">Studio</Link></li>
         </ul>
 
         <button type="button" className="theme-toggle" onClick={toggleTheme}>
-          {theme === 'nebula' ? 'Galaxia Púrpura' : 'Nebulosa'}
+          {theme === 'nebula' ? 'Purple Galaxy' : 'Nebula'}
         </button>
       </nav>
     </header>

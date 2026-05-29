@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import EmptyState from '../components/EmptyState';
 import PageHeader from '../components/PageHeader';
 import { getDiaryEntries } from '../services/contentService';
@@ -25,12 +25,29 @@ function getDayCount(entries) {
 }
 
 export default function Diary() {
-  const diaryEntries = useMemo(() => getDiaryEntries(), []);
+  const [diaryEntries, setDiaryEntries] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [openEntry, setOpenEntry] = useState(null);
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem('diaryFavorites');
     return saved ? JSON.parse(saved) : [];
   });
+
+  useEffect(() => {
+    loadEntries();
+  }, []);
+
+  const loadEntries = async () => {
+    try {
+      setLoading(true);
+      const entries = await getDiaryEntries();
+      setDiaryEntries(entries);
+    } catch (error) {
+      console.error('Error loading diary entries:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const entryCount = diaryEntries.length;
   const streakDays = useMemo(() => getDayCount(diaryEntries), [diaryEntries]);
@@ -48,38 +65,38 @@ export default function Diary() {
 
   return (
     <section id="diary" className="section diary-section">
-      <PageHeader eyebrow="Diario" title="Tu Diario de Manifestación">
-        Un registro vivo de tus intenciones, rituales y notas de energía diaria.
+      <PageHeader eyebrow="Diary" title="Your Manifestation Journal">
+        A living record of your intentions, rituals and daily energy notes.
       </PageHeader>
 
       <div className="diary-topbar">
         <div className="diary-summary-card diary-note-card">
-          <span className="diary-label">Diario del Estudio</span>
-          <h3>Las entradas creadas en Estudio se guardan aquí automáticamente.</h3>
-          <p>Usa la página de Estudio para agregar nuevas preguntas, rituales o notas de crecimiento. Aparecerán en esta vista de diario.</p>
+          <span className="diary-label">Studio Diary</span>
+          <h3>Entries created in Studio are automatically saved here.</h3>
+          <p>Use the Studio page to add new prompts, rituals or growth notes. They will appear in this diary view.</p>
         </div>
 
         <div className="diary-summary-card diary-stats-card">
-          <span className="diary-label">Estadísticas de Manifestación</span>
+          <span className="diary-label">Manifestation Statistics</span>
           <div className="stats-grid">
             <div>
               <strong>{entryCount}</strong>
-              <p>entradas</p>
+              <p>entries</p>
             </div>
             <div>
               <strong>{streakDays}</strong>
-              <p>días activos</p>
+              <p>active days</p>
             </div>
             <div>
               <strong>{favorites.length}</strong>
-              <p>favoritos</p>
+              <p>favorites</p>
             </div>
           </div>
         </div>
       </div>
 
       {entries.length === 0 ? (
-        <EmptyState title="sin entradas aún">Comienza tu práctica de manifestación desde Estudio y aparecerá aquí.</EmptyState>
+        <EmptyState title="no entries yet">Start your manifestation practice from Studio and it will appear here.</EmptyState>
       ) : (
         <div className="diary-grid">
           {entries.map((entry) => {
