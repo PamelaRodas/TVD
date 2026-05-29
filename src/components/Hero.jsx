@@ -3,7 +3,7 @@ import { useState } from 'react';
 import QuoteCarousel from './QuoteCarousel';
 import ParallaxSection from './ParallaxSection';
 
-const heroImage = "https://i.pinimg.com/1200x/a9/95/73/a9957370978d94c77f456e662397624f.jpg";
+const heroImage = "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85";
 
 const focusPrompts = [
   'What is one action I can complete today?',
@@ -34,6 +34,12 @@ const reflectionCards = [
   { title: 'today I will grow', text: 'Small consistency builds lasting strength.' },
 ];
 
+const rhythmItems = [
+  { label: 'morning', value: 'prayer + plan' },
+  { label: 'midday', value: 'one focused action' },
+  { label: 'night', value: 'reflect + reset' },
+];
+
 export default function Hero() {
   const [promptIndex, setPromptIndex] = useState(0);
   const [verseIndex, setVerseIndex] = useState(() => {
@@ -54,20 +60,12 @@ export default function Hero() {
       <ParallaxSection intensity={0.3}>
         <section id="home" className="hero section hero-section">
           <div className="hero-video-wrap" aria-hidden="true">
-            <video
-              className="hero-video"
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster={heroImage}
-            >
-              <source src="https://cdn.coverr.co/videos/coverr-fog-in-the-forest-1579/1080p.mp4" type="video/mp4" />
-            </video>
+            <img className="hero-video hero-image" src={heroImage} alt="" />
             <div className="hero-film" />
           </div>
 
           <div className="ambient ambient-one" />
+          <div className="hero-sunmark" aria-hidden="true" />
 
           <div className="hero-copy">
             <div className="hero-heading">
@@ -91,6 +89,24 @@ export default function Hero() {
               <span>consistency</span>
             </div>
 
+            <div className="hero-detail-grid">
+              <div>
+                <span>01</span>
+                <strong>pray</strong>
+                <p>start clear</p>
+              </div>
+              <div>
+                <span>02</span>
+                <strong>write</strong>
+                <p>name the goal</p>
+              </div>
+              <div>
+                <span>03</span>
+                <strong>act</strong>
+                <p>move today</p>
+              </div>
+            </div>
+
             <div className="gratitude-widget">
               <p className="diary-label">focus question</p>
               <strong>{focusPrompts[promptIndex]}</strong>
@@ -107,10 +123,51 @@ export default function Hero() {
               </div>
             </div>
           </div>
+
+          <aside className="hero-editorial-panel">
+            <p className="diary-label">today's rhythm</p>
+            <div className="rhythm-list">
+              {rhythmItems.map((item) => (
+                <div key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
+            </div>
+            <div className="hero-panel-note">
+              <span>focus</span>
+              <p>Small faithful actions, repeated with purpose.</p>
+            </div>
+          </aside>
         </section>
       </ParallaxSection>
 
       <QuoteCarousel />
+
+      <section className="home-command-section section">
+        <div className="featured-header">
+          <h2 className="section-title">your daily command center</h2>
+          <div className="title-accent">Live</div>
+        </div>
+
+        <div className="command-grid">
+          <article>
+            <span className="diary-label">Start</span>
+            <h3>choose the one thing</h3>
+            <p>Pick the action that would make today meaningful and finish it before the day gets noisy.</p>
+          </article>
+          <article>
+            <span className="diary-label">Anchor</span>
+            <h3>write it clearly</h3>
+            <p>Use the diary to turn thoughts into direction, then return to it when focus gets blurry.</p>
+          </article>
+          <article>
+            <span className="diary-label">Close</span>
+            <h3>notice the progress</h3>
+            <p>End the day with gratitude, honesty and one small adjustment for tomorrow.</p>
+          </article>
+        </div>
+      </section>
 
       <ParallaxSection intensity={0.2}>
         <section className="featured-content section">

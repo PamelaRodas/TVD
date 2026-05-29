@@ -31,12 +31,7 @@ export default function Studio() {
   const [summary, setSummary] = useState({ diaryCount: 0, photoCount: 0 });
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    setLoading(true);
+  async function loadData() {
     try {
       const [entries, photos, contentSummary] = await Promise.all([
         getDiaryEntries(),
@@ -51,7 +46,15 @@ export default function Studio() {
     } finally {
       setLoading(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    const loadTimer = window.setTimeout(() => {
+      loadData();
+    }, 0);
+
+    return () => window.clearTimeout(loadTimer);
+  }, []);
 
   const refreshData = async () => {
     await loadData();
@@ -120,22 +123,32 @@ export default function Studio() {
 
   return (
     <section className="section studio-section">
-      <PageHeader eyebrow="Studio" title="cosmic studio">
-        Create your growth entries and energy moments. Save them locally and build your meaningful practice.
-      </PageHeader>
+      <div className="studio-hero">
+        <PageHeader eyebrow="Studio" title="cosmic studio">
+          Create your growth entries and energy moments. Save them locally and build your meaningful practice.
+        </PageHeader>
+        <div className="studio-orbit" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
 
       <div className="studio-stats">
         <div>
-          <span className="diary-label">diary entries</span>
+          <span className="diary-label">journal</span>
           <strong>{summary.diaryCount}</strong>
+          <p>saved reflections</p>
         </div>
         <div>
-          <span className="diary-label">photo moments</span>
+          <span className="diary-label">gallery</span>
           <strong>{summary.photoCount}</strong>
+          <p>visual moments</p>
         </div>
         <div>
           <span className="diary-label">storage</span>
           <strong>local</strong>
+          <p>private on device</p>
         </div>
       </div>
 
@@ -236,25 +249,41 @@ export default function Studio() {
 
       <div className="studio-preview">
         <article className="studio-preview-list">
-          <h3>latest diary entries</h3>
-          {diaryEntries.slice(0, 3).map((entry) => (
+          <div className="studio-list-heading">
+            <span className="diary-label">latest</span>
+            <h3>diary entries</h3>
+          </div>
+          {diaryEntries.slice(0, 3).map((entry, index) => (
             <div key={entry.id} className="studio-preview-item">
               <span>{entry.label}</span>
               <strong>{entry.title}</strong>
               <p className="entry-author">by {entry.author || 'anonymous soul'}</p>
+              <small>{String(index + 1).padStart(2, '0')}</small>
             </div>
           ))}
+          {!loading && diaryEntries.length === 0 && (
+            <p className="studio-empty">No diary entries yet.</p>
+          )}
         </article>
 
         <article className="studio-preview-list">
-          <h3>latest photos</h3>
+          <div className="studio-list-heading">
+            <span className="diary-label">latest</span>
+            <h3>photos</h3>
+          </div>
           {photoMoments.slice(0, 3).map((moment) => (
             <div key={moment.id} className="studio-preview-item">
-              <span>image</span>
-              <strong>{moment.caption}</strong>
-              <p className="entry-author">by {moment.author || 'anonymous soul'}</p>
+              <img src={moment.image} alt="" />
+              <div>
+                <span>image</span>
+                <strong>{moment.caption}</strong>
+                <p className="entry-author">by {moment.author || 'anonymous soul'}</p>
+              </div>
             </div>
           ))}
+          {!loading && photoMoments.length === 0 && (
+            <p className="studio-empty">No photo moments yet.</p>
+          )}
         </article>
       </div>
     </section>

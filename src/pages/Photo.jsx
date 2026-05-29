@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EmptyState from '../components/EmptyState';
 import ImageLightbox from '../components/ImageLightbox';
 import PageHeader from '../components/PageHeader';
@@ -6,10 +6,32 @@ import { useFavorites } from '../hooks/useFavorites';
 import { getPhotoMoments } from '../services/contentService';
 
 export default function PhotoDump() {
-  const [moments] = useState(() => getPhotoMoments());
+  const [moments, setMoments] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const { isFavorite, toggleFavorite } = useFavorites();
+
+  async function loadMoments() {
+    try {
+      const photoMoments = await getPhotoMoments();
+      setMoments(Array.isArray(photoMoments) ? photoMoments : []);
+      setSelectedImage(0);
+    } catch (error) {
+      console.error('Error loading photo moments:', error);
+      setMoments([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    const loadTimer = window.setTimeout(() => {
+      loadMoments();
+    }, 0);
+
+    return () => window.clearTimeout(loadTimer);
+  }, []);
 
   const featuredMoment = moments[0];
   const galleryMoments = moments.slice(1);
@@ -53,7 +75,11 @@ export default function PhotoDump() {
           Visual representations of healthy practices, intentions and the energy surrounding our growth practice.
         </PageHeader>
 
-        {moments.length === 0 ? (
+        {loading ? (
+          <EmptyState title="loading gallery">
+            Loading the gallery moments. If the API is offline, the local photo set will appear once the request resolves.
+          </EmptyState>
+        ) : moments.length === 0 ? (
           <EmptyState title="no moments yet">
             Add your first energy moment from Studio and it will appear here.
           </EmptyState>

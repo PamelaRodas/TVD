@@ -123,7 +123,7 @@ body::after {
 
 .nav-links a {
   position: relative;
-  color: rgba(255, 245, 248, 0.86);
+  color: var(--cream);
 }
 
 .nav-links a::after {
@@ -287,7 +287,7 @@ body::after {
 }
 
 .vampire-notes li {
-  color: rgba(247, 239, 234, 0.76);
+  color: var(--cream);
   font-size: 0.95rem;
   position: relative;
   padding-left: 1.2rem;
@@ -302,7 +302,7 @@ body::after {
 
 .hero-text {
   max-width: 35rem;
-  color: rgba(247, 239, 234, 0.82);
+  color: var(--cream);
   font-size: 1.03rem;
   line-height: 1.8;
 }
@@ -324,7 +324,7 @@ body::after {
 }
 
 .primary-button {
-  color: #fff6f8;
+  color: var(--cream);
   background: linear-gradient(135deg, rgba(79, 124, 255,0.95), rgba(90,22,34,0.95));
   box-shadow: 0 10px 22px rgba(0,0,0,0.28);
 }
@@ -358,7 +358,7 @@ body::after {
 .site-footer p,
 .site-footer span {
   font-size: 0.93rem;
-  color: rgba(247, 239, 234, 0.84);
+  color: var(--cream);
 }
 
 .hero-tags span,
@@ -544,7 +544,7 @@ body::after {
 .playlist-note p,
 .quote-card p {
   margin: 0;
-  color: rgba(247, 239, 234, 0.82);
+  color: var(--cream);
   line-height: 1.8;
 }
 
@@ -645,7 +645,7 @@ body::after {
 }
 
 .playlist-description {
-  color: rgba(247, 239, 234, 0.88);
+  color: var(--cream);
   line-height: 1.9;
   font-size: 0.98rem;
   margin: 0 0 1.6rem 0;
@@ -687,7 +687,7 @@ body::after {
 }
 
 .track-name {
-  color: rgba(247, 239, 234, 0.86);
+  color: var(--cream);
   font-size: 0.95rem;
   letter-spacing: 0.02em;
 }
@@ -748,7 +748,7 @@ body::after {
 .closing-signature p {
   margin: 0.4rem 0;
   font-size: 0.95rem;
-  color: rgba(247, 239, 234, 0.82);
+  color: var(--cream);
 }
 
 .closing-signature p:first-child {
@@ -769,7 +769,7 @@ body::after {
 .closing-signature .faith {
   font-style: italic;
   font-size: 0.9rem;
-  color: rgba(247, 239, 234, 0.74);
+  color: var(--cream);
 }
 
 .site-footer {
@@ -806,7 +806,7 @@ body::after {
 }
 
 .footer-text {
-  color: rgba(247, 239, 234, 0.9);
+  color: var(--cream);
   margin-bottom: 0.4rem;
 }
 
@@ -838,7 +838,7 @@ body::after {
 .footer-tagline {
   font-size: 0.9rem !important;
   font-family: "Inter", sans-serif !important;
-  color: rgba(247, 239, 234, 0.72);
+  color: var(--cream);
   font-style: italic;
   margin: 0.6rem 0 !important;
 }
@@ -847,7 +847,7 @@ body::after {
   font-size: 0.95rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(247, 239, 234, 0.65);
+  color: var(--cream);
   margin-top: 0.8rem !important;
 }
 
@@ -984,7 +984,7 @@ body::after {
 
 .feature-card p {
   margin: 0 0 1.2rem;
-  color: rgba(247, 239, 234, 0.82);
+  color: var(--cream);
   font-size: 0.95rem;
   line-height: 1.7;
   flex-grow: 1;
@@ -1021,11 +1021,12 @@ body::after {
   position: relative;
   z-index: 1;
   text-align: center;
+  color: var(--cream);
 }
 
 .intro-text {
   margin: 0 0 2.2rem;
-  color: rgba(247, 239, 234, 0.8);
+  color: var(--cream);
   font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   line-height: 1.85;
   letter-spacing: 0.01em;
@@ -1079,7 +1080,7 @@ body::after {
   border-radius: 999px;
   background: rgba(15, 7, 11, 0.66);
   border: 1px solid rgba(229, 164, 184, 0.16);
-  color: rgba(247, 239, 234, 0.72);
+  color: var(--cream);
   cursor: none;
   transition: all 200ms ease;
   display: flex;
@@ -1335,7 +1336,7 @@ body::after {
   min-height: 2.7rem;
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
-  color: rgba(255, 249, 239, 0.88);
+  color: var(--cream);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -1453,7 +1454,7 @@ body::after {
 
 .hero-subtitle {
   max-width: 38rem;
-  color: rgba(255, 249, 239, 0.92);
+  color: var(--cream);
   font-size: clamp(1.7rem, 3vw, 2.55rem);
   line-height: 1.15;
 }

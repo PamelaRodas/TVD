@@ -26,28 +26,28 @@ function getDayCount(entries) {
 
 export default function Diary() {
   const [diaryEntries, setDiaryEntries] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [openEntry, setOpenEntry] = useState(null);
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem('diaryFavorites');
     return saved ? JSON.parse(saved) : [];
   });
 
-  useEffect(() => {
-    loadEntries();
-  }, []);
-
-  const loadEntries = async () => {
+  async function loadEntries() {
     try {
-      setLoading(true);
       const entries = await getDiaryEntries();
       setDiaryEntries(entries);
     } catch (error) {
       console.error('Error loading diary entries:', error);
-    } finally {
-      setLoading(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    const loadTimer = window.setTimeout(() => {
+      loadEntries();
+    }, 0);
+
+    return () => window.clearTimeout(loadTimer);
+  }, []);
 
   const entryCount = diaryEntries.length;
   const streakDays = useMemo(() => getDayCount(diaryEntries), [diaryEntries]);
